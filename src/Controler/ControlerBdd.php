@@ -1,5 +1,5 @@
 <?php
-	include './Model/Variables.php';
+	require '../Model/Variables.php';
 
 	/**
 	 * [Fonction de connexion a la BDD]

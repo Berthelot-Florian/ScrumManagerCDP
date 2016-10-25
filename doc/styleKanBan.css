@@ -1,6 +1,12 @@
 table
 {
 	width:100% ; 
-	border-collapse:collapse" ; 
-	border="1px solid black"
+	border-collapse:collapse ;
+	border: 1px solid black;
+}
+
+td
+{
+	border-collapse:collapse ;
+	border: 1px solid black;
 }

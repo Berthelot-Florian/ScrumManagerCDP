@@ -1,0 +1,27 @@
+.label
+{
+	display: block;
+	font-size: large;
+	text-align: center;
+	font-family: Courier New ;
+	text-decoration:  underline;
+	background-color: silver;
+	background-repeat: no-repeat;
+	padding: 0.2cm 0.2cm 0.2cm 0.2cm;
+    background-origin: content-box;
+
+}
+
+form
+{
+	text-align: center;
+	background-color: #0074AF;
+	padding: 1cm 10cm 1cm 10cm;
+}
+
+.title
+{
+	text-align: center;
+	font-family: Courier New ;
+	
+}

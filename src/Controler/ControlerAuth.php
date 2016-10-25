@@ -1,6 +1,6 @@
 <?php 
-	include 'ControlerBdd.php';
-	include './Model/Variables.php';
+	require 'ControlerBdd.php';
+	require '../Model/Variables.php';
 
 	/**
 	 * [connectUser Fonction pour connecter un utilisateur]
