@@ -23,7 +23,7 @@ CREATE_PROJECT_TABLE="CREATE TABLE Project (id SMALLINT NOT NULL AUTO_INCREMENT 
 							REFERENCES Users(id)
 							ON DELETE CASCADE,
 						description TEXT);"
-CREATE_CONTRIBUTOR_TABLE="CREATE TABLE Contributor (contributor SMALLINT NOT NULL,
+CREATE_CONTRIBUTORPROJECT_TABLE="CREATE TABLE ContributorProject (contributor SMALLINT NOT NULL,
 						project SMALLINT NOT NULL,
 						FOREIGN KEY (contributor)
 							REFERENCES Users(id)
@@ -43,15 +43,6 @@ CREATE_USERSTORY_TABLE="CREATE TABLE UserStory (id SMALLINT NOT NULL AUTO_INCREM
 						goal VARCHAR(32) NOT NULL,
 						priority SMALLINT NOT NULL);"
 
-CREATE_TASK_TABLE="CREATE TABLE Task (id SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-						project SMALLINT NOT NULL,
-						FOREIGN KEY (project)
-							REFERENCES Project(id)
-							ON DELETE CASCADE,						
-						description TEXT,
-						effort SMALLINT,
-						state TINYINT NOT NULL);"
-
 CREATE_SPRINT_TABLE="CREATE TABLE Sprint (id SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 						number SMALLINT NOT NULL,
 						project SMALLINT NOT NULL,
@@ -61,14 +52,38 @@ CREATE_SPRINT_TABLE="CREATE TABLE Sprint (id SMALLINT NOT NULL AUTO_INCREMENT PR
 						start DATE NOT NULL,
 						end DATE NOT NULL);"
 
+CREATE_TASK_TABLE="CREATE TABLE Task (id SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+						project SMALLINT NOT NULL,
+						FOREIGN KEY (project)
+							REFERENCES Project(id)
+							ON DELETE CASCADE,						
+						description TEXT,
+						effort SMALLINT,
+						sprint SMALLINT,
+						FOREIGN KEY (sprint)
+							REFERENCES Sprint(id)
+							ON DELETE CASCADE,
+						state TINYINT NOT NULL);"
+
+CREATE_CONTRIBUTORTASK_TABLE="CREATE TABLE ContributorTask (contributor SMALLINT NOT NULL,
+						task SMALLINT NOT NULL,
+						FOREIGN KEY (contributor)
+							REFERENCES Users(id)
+							ON DELETE CASCADE,
+						FOREIGN KEY (task)
+							REFERENCES Task(id)
+							ON DELETE CASCADE,
+						PRIMARY KEY(contributor, Task));"
+
 echo $CREATE_DATABASE > tmp.sql
 echo "USE scma;" >> tmp.sql
 echo $CREATE_USER_TABLE >> tmp.sql
 echo $CREATE_PROJECT_TABLE >> tmp.sql
 echo $CREATE_USERSTORY_TABLE >> tmp.sql
-echo $CREATE_TASK_TABLE >> tmp.sql
 echo $CREATE_SPRINT_TABLE >> tmp.sql
-echo $CREATE_CONTRIBUTOR_TABLE >> tmp.sql
+echo $CREATE_TASK_TABLE >> tmp.sql
+echo $CREATE_CONTRIBUTORPROJECT_TABLE >> tmp.sql
+echo $CREATE_CONTRIBUTORTASK_TABLE >> tmp.sql
 
 mysql -u$db_user -p -h$db_host < tmp.sql
 
