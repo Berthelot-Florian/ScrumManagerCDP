@@ -37,7 +37,7 @@
 	function isConnected(){
 		global $TableUserGlob;
 		session_start();
-		if($_SESSION['login']==''){
+		if(!isset($_SESSION['login'])){
 			return FALSE;
 		} else {
 			return TRUE;
