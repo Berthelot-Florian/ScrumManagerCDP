@@ -1,14 +1,9 @@
 <?php 
-<<<<<<< HEAD
 	$_SESSION['ControlerAuth'] = '1';
 	if(!isset($_SESSION['ControlerBdd']))
 		include 'ControlerBdd.php';
 	if(!isset($_SESSION['Variables']))
 		include '../Model/Variables.php';
-=======
-	include 'ControlerBdd.php';
-	require '../Model/Variables.php';
->>>>>>> 0bad652f094890028bcef48aa8a37b3b40096c60
 
 	/**
 	 * [connectUser Fonction pour connecter un utilisateur]

@@ -1,14 +1,9 @@
 <?php 
-<<<<<<< HEAD
 	$_SESSION['ControlerProject'] = '1';
 	if(!isset($_SESSION['ControlerBdd']))
 		include 'ControlerBdd.php';
 	if(!isset($_SESSION['Variables']))
 		require '../Model/Variables.php';
-=======
-	include '../ControlerBdd.php';
-	require '../Model/Variables.php';
->>>>>>> 0bad652f094890028bcef48aa8a37b3b40096c60
 
 	/**
 	 * [AddProject Fonction pour ajouter un projet]
