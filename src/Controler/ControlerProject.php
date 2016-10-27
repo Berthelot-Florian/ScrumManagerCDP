@@ -1,5 +1,5 @@
 <?php 
-	require '../ControlerBdd.php';
+	include '../ControlerBdd.php';
 	require '../Model/Variables.php';
 
 	/**
