@@ -1,6 +1,8 @@
 <?php
-	require '../Model/Variables.php';
-
+	$_SESSION['ControlerBdd'] = '1';
+	if(!isset($_SESSION['Variables']))
+		include '../Model/Variables.php';
+	
 	/**
 	 * [Fonction de connexion a la BDD]
 	 * @return [Object Mysqli] [Permet d'effectuer les actions sur la BDD] 

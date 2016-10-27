@@ -1,0 +1,33 @@
+Les gars, pour include un controler PHP, il faut faire un include de include ControlerInclude.php puis appeler cleanInclude avant et APRES vos includes
+C'est important car sinon on peut inclure 2 fois le même fichier a causes des dépendance et sa fait le bordel.
+
+include '../Controler/ControlerInclude.php';
+cleanInclude();
+
+/**
+* Vos includes a insérer
+* ici
+*/
+
+cleanInclude();
+
+
+
+Si vous voulez créé un controleur : 
+
+au début de votre controleur : 
+
+$_SESSION['NomDuControlerQueTuCree'] = '1';
+if(!isset($_SESSION['ControlerQueTuInclude']))
+	include 'ControlerQueTuInclude';
+
+Dans ControlerInclude.php :
+
+ajouter dans cleanInclude ARPES le session_start
+	
+unset($_SESSION['ControlerQueTuCree']);
+
+
+
+Voila !
+

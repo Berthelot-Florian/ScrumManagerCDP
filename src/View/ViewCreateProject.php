@@ -5,10 +5,14 @@
 	    <meta charset="utf-8">
 	    <title>CreateProject</title>
 	    <?php
+	    	include '../Controler/ControlerInclude.php';
+	    	cleanInclude();
 	    	// Include pour les fonction php 
 	    	require '../Controler/ControlerUser.php';
 	 		require '../Controler/ControlerProject.php';
+	 		cleanInclude();
 	 	?>
+
 	    <link rel="stylesheet" href="../Style/styleCreateProject.css"> 
   	</head>
   	
