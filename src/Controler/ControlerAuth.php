@@ -24,6 +24,7 @@
 			$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 			$_SESSION['id'] = $row['id'];
 			$_SESSION['login'] = $row['login'];
+			$_SESSION['pseudo'] = $row['pseudo'];
 			return TRUE;
 		} else {
 			return FALSE;
@@ -36,14 +37,20 @@
 	 */
 	function isConnected(){
 		global $TableUserGlob;
-		session_start();
-		if(!isset($_SESSION['login'])){
+		if (session_status() == PHP_SESSION_NONE) {
+			session_start();
+		}
+		if(isset($_SESSION['login'])){
+			if($_SESSION['login'] == ''){
+				return FALSE;
+			}
+			else 
+				return TRUE;
+		}
+		else{
 			return FALSE;
-		} else {
-			return TRUE;
 		}
 	}
-
 	/**
 	 * [disconnect Permet de ce déconnecter]
 	 */

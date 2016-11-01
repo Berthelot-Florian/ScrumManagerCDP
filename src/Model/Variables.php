@@ -7,5 +7,5 @@
 
 	// Noms des table
 	$TableUserGlob = "users";
-	$TableProjetGlob = "Projets";
+	$TableProjetGlob = "project";
 	$TableContribGlob = "Contributors";

@@ -7,18 +7,16 @@
 
 	/**
 	 * [AddProject Fonction pour ajouter un projet]
-	 * @param [String] $Title        		[Titre du projet]
-	 * @param [Int] $ScrumMaster  			[Id du ScrumMaster]
-	 * @param [Int] $ProductOwner 			[Id du ProductOwned]
+	 * @param [String] $title        		[Titre du projet]
+	 * @param [Int] $scrummaster  			[Id du ScrumMaster]
+	 * @param [Int] $productowner 			[Id du ProductOwned]
 	 * @param [Description] $description  	[Description du Projet]
 	 * @return [Boolean]					[Retourne TRUE si la requête s'est correctement effectuer, FALSE sinon]
 	 */
-	function AddProject($Title,$ScrumMaster,$ProductOwner,$description){
+	function AddProject($title,$scrummaster,$productowner,$description){
 		global $TableProjetGlob;
-		if(is_string($Title) && is_string($description) ){
-			$SM = intval($ScrumMaster);
-			$PO = intval($ProductOwner);
-			$query = "INSERT INTO $TableProjetGlob ( `titre`, `ScrumMaster`, `ProductOwner`, `description`) VALUES ('$Title','$SM','$PO','$description')";
+		if(is_string($title) && is_string($description) ){
+			$query = "INSERT INTO $TableProjetGlob ( `title`, `scrummaster`, `productowner`, `description`) VALUES ('$title','$scrummaster','$productowner','$description')";
 			return launchQuery($query);
 		}
 		return false;
