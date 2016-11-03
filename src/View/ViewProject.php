@@ -4,7 +4,7 @@
 	cleanInclude();
 	include '../Controler/ControlerProject.php';
 	//$currProject = getProjectById($_POST["id"]);
-	$currProject = mysqli_fetch_array(launchQuery("SELECT * FROM Project WHERE id = '1'"),MYSQLI_ASSOC);
+	$currProject = getProjectById(1);
 ?>
 <html>
 <head>
