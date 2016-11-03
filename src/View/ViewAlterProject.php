@@ -32,7 +32,10 @@
 		<?php
 			$users = getAllUsers(); 
 			while($row = mysqli_fetch_array($users,MYSQLI_ASSOC)){
-				echo "<option value=\"$row[id]\">$row[pseudo]</option>";
+				if($row['id']==$currProject['scrummaster'])
+					echo "<option value=\"$row[id]\" selected=\"selected\">$row[pseudo]</option>";
+				else
+					echo "<option value=\"$row[id]\">$row[pseudo]</option>";
 			}
 		?>
 		</select>
@@ -41,7 +44,10 @@
 		<?php
 			$users = getAllUsers(); 
 			while($row = mysqli_fetch_array($users,MYSQLI_ASSOC)){
-				echo "<option value=\"$row[id]\">$row[pseudo]</option>";
+				if($row['id']==$currProject['productowner'])
+					echo "<option value=\"$row[id]\" selected=\"selected\">$row[pseudo]</option>";
+				else
+					echo "<option value=\"$row[id]\">$row[pseudo]</option>";
 			}
 		?>
 		</select>
