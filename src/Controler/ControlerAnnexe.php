@@ -6,7 +6,13 @@
 		require '../Model/Variables.php';
 
 
-
+	/**
+	 * [addAnnexe Permet d'ajouter un annexe]
+	 * @param [int] $idProjet 		[id du projet]
+	 * @param [String] $file     	[nom du fichier]
+	 * @param [String] $type     	[type du fichier]
+	 * @return [Boolean] 			[True si réussis, false sinon]
+	 */
 	function addAnnexe($idProjet,$file,$type){
 		global $TableAnnexeGlob;
 		$idProjet = intval($idProjet);
@@ -15,7 +21,11 @@
 		return $result;
 	}
 
-
+	/**
+	 * [getAnnexe Permet de récupéré l'ensemble des annexes d'un projet]
+	 * @param  [int] $idProjet  [id du projet]
+	 * @return [mysqli_result]  [Annexes du projet]
+	 */
 	function getAnnexe($idProjet){
 		global $TableAnnexeGlob;
 		$idProjet = intval($idProjet);
@@ -24,6 +34,12 @@
 		return $result;
 	}
 
+	/**
+	 * [suppAnnexe permet de supprimer un annexe]
+	 * @param  [int] $idProjet 	  [id du projet]
+	 * @param  [String] $file     [nom du fichier]
+	 * @return [Boolean]          [True si réussi, false sinon]
+	 */
 	function suppAnnexe($idProjet,$file){
 		global $TableAnnexeGlob;
 		$idProjet = intval($idProjet);

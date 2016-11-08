@@ -44,12 +44,10 @@
 		                	echo "<h3>L'extension n'est pas autorisé en tant qu'image</h3>";
 		                }
 		            } else {
-
 		            	if(addAnnexe($projet,$_FILES['file']['name'],$_POST['type'])){
 		            		move_uploaded_file($_FILES['file']['tmp_name'], '../Annexes/' . basename($_FILES['file']['name']));
 		               			echo "<h3>Annexe ajouter avec succés</h3>";
-		            	}
-		            		
+		            	}	
 		            }
         		} else {
         			echo "<h3>Le Fichier que vous souhaitez mettre en annexe est trop volumineux</h3>";
@@ -62,8 +60,7 @@
 	 	?>
 	 	<?php 
 	 		$projet = $_GET["projet"];
-	 		if(!isConnected()){
-	 		//if(isContributor($projet)){
+	 		if(isContributor($projet)){
 	 			echo '<h2> Vous n\'êtes pas contributeur de ce projet, vous ne pouvez pas le modifier</h2>';
 	 		} else {
 	 			echo "<form action=\"ViewAjoutAnnexe.php?projet=".$projet."\" method=\"post\" enctype=\"multipart/form-data\">";
