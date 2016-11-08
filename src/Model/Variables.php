@@ -1,7 +1,7 @@
 <?php
 	// Information de la BDD
 	$hostGlob = 'localhost';
-	$bddGlob = 'scma';
+	$bddGlob = 'test';
 	$userGlob = 'root';
 	$passwdGlob = 'root';
 
@@ -9,3 +9,4 @@
 	$TableUserGlob = "Users";
 	$TableProjetGlob = "Project";
 	$TableContribGlob = "ContributorProject";
+	$TableAnnexeGlob = "annexe";

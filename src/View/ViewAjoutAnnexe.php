@@ -62,22 +62,27 @@
 	 	?>
 	 	<?php 
 	 		$projet = $_GET["projet"];
-	 		echo "<form action=\"ViewAjoutAnnexe.php?projet=".$projet."\" method=\"post\" enctype=\"multipart/form-data\">";
+	 		if(!isConnected()){
+	 		//if(isContributor($projet)){
+	 			echo '<h2> Vous n\'êtes pas contributeur de ce projet, vous ne pouvez pas le modifier</h2>';
+	 		} else {
+	 			echo "<form action=\"ViewAjoutAnnexe.php?projet=".$projet."\" method=\"post\" enctype=\"multipart/form-data\">";
+
+	 			echo '<center>';
+				echo "<h2> Fichier à ajouter en annexe </h2><br />";
+				echo "<input type=\"file\" name=\"file\" /><br />";
+				echo "<select name=\"type\" class=\"objForm\">";
+				echo "<option value=\"image\">Image</option>";
+				echo "<option value=\"Autre\">Autre</option>";
+				echo "</select><br />"; 
+				echo "<input type=\"hidden\" "  . "name=\"idProjet\" " . "value=\"$projet\""  . "/>" ;
+				echo "<br />";
+				echo "<input type=\"submit\" value=\"Ajouter l'annexe\" />";
+			 	echo "</form>";
+	 		}
+	 		
 	 	?>
-	 	<center>
-		<h2> Fichier à ajouter en annexe </h2><br />
-		<input type="file" name="file" /><br />
-		<select name="type" class="objForm">
-			<option value="image">Image</option>
-			<option value="Autre">Autre</option>
-		</select><br />
-		<?php 
-			
-			echo " <input type=\"hidden\" "  . "name=\"idProjet\" " . "value=\"$projet\""  . "/>" ;
-		?>
-		<br />
-		<input type="submit" value="Ajouter l'annexe" />
-	 	</form>
+	 	
 	 	
 	 	
 	 	

@@ -32,7 +32,8 @@
 	 	<br /><br />
 	 	<?php 
 	 		$projet = $_GET["projet"];
-	 		echo "<a class=\"btn btn-default\" href=\"ViewAjoutAnnexe.php?projet=$projet\">" . "Ajouter un document annexe au projet"."</a>";
+	 		if(isContributor($projet)){
+	 			echo "<a class=\"btn btn-default\" href=\"ViewAjoutAnnexe.php?projet=$projet\">" . "Ajouter un document annexe au projet"."</a>";
  			echo "<br />";	
 	 		echo "<br />";	
 	 		$Annexe = getAnnexe($projet);
@@ -46,14 +47,19 @@
 	 		echo "</tr>";
 	 		echo "</thead>";
 
-	 		while($row = mysqli_fetch_array($Annexe,MYSQLI_NUM)){
+	 		if(isContributor($projet)){
+	 			while($row = mysqli_fetch_array($Annexe,MYSQLI_NUM)){
 	 			echo "<tr>";
 	 			echo "<td>".$row[2]."</td>";
 	 			echo "<td>".$row[1]."</td>";
 	 			echo "<td>"."<a href=\"../Annexes/$row[1]\">"."Afficher ce document"."</a>"."</td>";
 	 			echo "<td>"."<a href=\"../Handler/suppAnnexe.php?file=$row[1]&projet=$projet\">"."Supprimer"."</a>"."</td>";
 	 			echo "</tr>";
+	 			}	
+	 		} else {
+	 			echo "<tr><td>Vous n'êtes pas contributeur</td><td></td><td></td><td></td></tr>";
 	 		}
+	 		
 	 		echo "</table>";
 
 	 	?>
