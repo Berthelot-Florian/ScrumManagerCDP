@@ -5,3 +5,22 @@
 .littlespace {
    margin-bottom: 10px;
 }
+
+.Anntable {
+	border-style: solid;
+	border-collapse: collapse;
+	height: 75px; 
+	width: 50%;
+	background-color: rgba(246, 244, 96, 0.4);
+	text-align: center;
+}
+
+.annThd {
+	background-color: rgba(114, 109, 168, 0.5);
+	height: 75px;
+	border-collapse: collapse;
+	border-style: solid;
+	text-align: center;
+
+
+}
