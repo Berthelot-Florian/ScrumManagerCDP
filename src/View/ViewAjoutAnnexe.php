@@ -60,7 +60,7 @@
 	 	?>
 	 	<?php 
 	 		$projet = $_GET["projet"];
-	 		if(isContributor($projet)){
+	 		if(!isContributor($projet)){
 	 			echo '<h2> Vous n\'êtes pas contributeur de ce projet, vous ne pouvez pas le modifier</h2>';
 	 		} else {
 	 			echo "<form action=\"ViewAjoutAnnexe.php?projet=".$projet."\" method=\"post\" enctype=\"multipart/form-data\">";
