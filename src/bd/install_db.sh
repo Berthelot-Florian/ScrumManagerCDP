@@ -75,6 +75,14 @@ CREATE_CONTRIBUTORTASK_TABLE="CREATE TABLE ContributorTask (contributor SMALLINT
 							ON DELETE CASCADE,
 						PRIMARY KEY(contributor, Task));"
 
+CREATE_ANNEX_TABLE="CREATE TABLE Annex (id SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+						project SMALLINT NOT NULL,
+						FOREIGN KEY (project)
+							REFERENCES Project(id)
+							ON DELETE CASCADE,
+						name VARCHAR(32) NOT NULL,
+						type VARCHAR(32) NOT NULL;"
+
 echo $CREATE_DATABASE > tmp.sql
 echo "USE scma;" >> tmp.sql
 echo $CREATE_USER_TABLE >> tmp.sql

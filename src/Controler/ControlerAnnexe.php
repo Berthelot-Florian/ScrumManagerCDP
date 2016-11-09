@@ -29,7 +29,7 @@
 	function getAnnexe($idProjet){
 		global $TableAnnexeGlob;
 		$idProjet = intval($idProjet);
-		$query = "SELECT * FROM $TableAnnexeGlob WHERE idProjet = '$idProjet'";
+		$query = "SELECT * FROM $TableAnnexeGlob WHERE project = '$idProjet'";
 		$result = launchQuery($query);
 		return $result;
 	}
