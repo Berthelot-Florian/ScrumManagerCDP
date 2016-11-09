@@ -1,7 +1,7 @@
 <?php
 	// Information de la BDD
 	$hostGlob = 'localhost';
-	$bddGlob = 'test';
+	$bddGlob = 'scma';
 	$userGlob = 'root';
 	$passwdGlob = 'root';
 

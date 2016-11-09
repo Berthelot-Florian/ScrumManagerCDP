@@ -16,11 +16,11 @@
 		$conn = connectBdd();
 		$password = md5($password);
 		/* Vérification de doublon de login */
-		$queryTest = "SELECT * FROM users WHERE login='$login'" ;
+		$queryTest = "SELECT * FROM Users WHERE login='$login'" ;
 		$resultTest = launchQuery($queryTest);
 		if(mysqli_num_rows($resultTest)==1)
 			return FALSE;
-		$query = "INSERT INTO users (login,password,pseudo,email) VALUES ('$login','$password','$pseudo','$email')" ;
+		$query = "INSERT INTO Users (login,password,pseudo,email) VALUES ('$login','$password','$pseudo','$email')" ;
 		launchQuery($query);
 		return TRUE;
 	}
