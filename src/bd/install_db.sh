@@ -81,7 +81,7 @@ CREATE_ANNEX_TABLE="CREATE TABLE Annex (id SMALLINT NOT NULL AUTO_INCREMENT PRIM
 							REFERENCES Project(id)
 							ON DELETE CASCADE,
 						name VARCHAR(32) NOT NULL,
-						type VARCHAR(32) NOT NULL;"
+						type VARCHAR(32) NOT NULL);"
 
 echo $CREATE_DATABASE > tmp.sql
 echo "USE scma;" >> tmp.sql
@@ -92,6 +92,7 @@ echo $CREATE_SPRINT_TABLE >> tmp.sql
 echo $CREATE_TASK_TABLE >> tmp.sql
 echo $CREATE_CONTRIBUTORPROJECT_TABLE >> tmp.sql
 echo $CREATE_CONTRIBUTORTASK_TABLE >> tmp.sql
+echo $CREATE_ANNEX_TABLE >> tmp.sql
 
 mysql -u$db_user -p -h$db_host < tmp.sql
 
