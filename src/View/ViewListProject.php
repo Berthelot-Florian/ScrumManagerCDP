@@ -34,6 +34,9 @@ else{
 						<strong>ScrumMaster : </strong><?php $row = getUserByID($data[3]); echo $row[3]; ?> <br/>
 						<strong>ProductOwner : </strong><?php $row = getUserByID($data[3]); echo $row[3]; ?> <br/>
 						<strong>Description : </strong><?php echo $data[4]; ?> <br/>
+						<a href="ViewProject.php?id=<?php echo htmlspecialchars($data[0]); ?>" class="btn btn-default">Voir le projet</a>
+						<a href="ViewAlterProject.php?id=<?php echo htmlspecialchars($data[0]); ?>" class="btn btn-default">Modifier le projet</a>
+						<a href="todo.php?id=<?php echo htmlspecialchars($data[0]); ?>" class="btn btn-default">Ajouter un contributeur</a>
 					</div>
 				</div>
 			</div>

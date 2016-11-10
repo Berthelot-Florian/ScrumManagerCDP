@@ -4,8 +4,8 @@
 	cleanInclude();
 	include '../Controler/ControlerProject.php';
 	require '../Controler/ControlerUser.php';
-	//$currProject = getProjectById($_POST['id']);
-	$currProject = getProjectById(1);
+	$currProject = getProjectById($_GET['id']);
+	//$currProject = getProjectById(1);
 ?>
 <html>
 <head>

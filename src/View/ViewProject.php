@@ -3,15 +3,14 @@
 	include '../Controler/ControlerInclude.php';
 	cleanInclude();
 	include '../Controler/ControlerProject.php';
-	//$currProject = getProjectById($_POST["id"]);
-	$currProject = getProjectById(1);
+	$currProject = getProjectById($_GET["id"]);
 ?>
 <html>
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Projet <?php echo $currProject['title']; ?> </title>
 	<link rel="stylesheet" href="../css/bootstrap.css"> 
-	<link rel="stylesheet" href="../css/index.css"> 
+	<link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
 	<?php include 'ViewMenuBar.php' ?>
