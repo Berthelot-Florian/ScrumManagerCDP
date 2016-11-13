@@ -1,4 +1,4 @@
-	<div class="space">
+	<div class="mediumspace">
 		<div class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-header">
@@ -12,7 +12,7 @@
 						<ul class="nav navbar-nav">
 							<li><a href="ViewCreateProject.php">Créer projet</a>
 							</li>
-							<li><a href="#">Voir projets</a>
+							<li><a href="ViewOwnProject.php">Voir projets</a>
 							</li>
 						</ul>
 						<?php } ?>

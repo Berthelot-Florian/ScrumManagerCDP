@@ -15,8 +15,15 @@
 	 */
 	function AddProject($title,$scrummaster,$productowner,$description){
 		global $TableProjetGlob;
+		global $TableContribGlob;
 		if(is_string($title) && is_string($description) ){
 			$query = "INSERT INTO $TableProjetGlob ( `title`, `scrummaster`, `productowner`, `description`) VALUES ('$title','$scrummaster','$productowner','$description')";
+			$result = launchQuery($query);
+			if(!$result){
+				return false; 
+			}
+			$idProject = getProjectByName($title)['id'];
+			$query = "INSERT INTO $TableContribGlob (`contributor`, `project`) VALUES ('$scrummaster','$idProject')";
 			return launchQuery($query);
 		}
 		return false;
@@ -56,7 +63,7 @@
 	function getProjectByName($Title){
 		global $TableProjetGlob;
 		if(is_string($Title)){
-			$query = "SELECT * FROM $TableProjetGlob WHERE titre = '$Title' ";
+			$query = "SELECT * FROM $TableProjetGlob WHERE title = '$Title' ";
 			$result = launchQuery($query);
 			$row = mysqli_fetch_array($result,MYSQLI_ASSOC);
 			return $row;
@@ -74,4 +81,39 @@
 		$result = launchQuery($query);
 		return $result;
 	}
+	
+	/**
+	 * [getAllProjectByScMaID Permet d'obtenir tout les projets existant dans la BDD où l'utilisateur est ScrumMaster]
+	 * @param  [int] $id [id de l'utilisateur]
+	 * @return [mysqli_result] [retourne tout les projets]
+	 */
+	function getAllProjectByScMaID($UserID){
+		global $TableProjetGlob;
+		$query = "SELECT * FROM $TableProjetGlob WHERE scrummaster = '$UserID' ";
+		$result = launchQuery($query);
+		return $result;
+	}
 
+	/**
+	 * [getAllProjectByPOID Permet d'obtenir tout les projets existant dans la BDD où l'utilisateur est ProductOwner]
+	 * @param  [int] $id [id de l'utilisateur]
+	 * @return [mysqli_result] [retourne tout les projets]
+	 */
+	function getAllProjectByPOID($UserID){
+		global $TableProjetGlob;
+		$query = "SELECT * FROM $TableProjetGlob WHERE productowner = '$UserID' ";
+		$result = launchQuery($query);
+		return $result;
+	}
+	
+	/**
+	 * [getAllProject Permet d'obtenir tout les projets existant dans la BDD où l'utilisateur est contributeur]
+	 * @param  [int] $id [id de l'utilisateur]
+	 * @return [mysqli_result] [retourne tout les projets]
+	 */
+	function getAllProjectByContributorID($UserID){
+		global $TableProjetGlob;
+		$query = "SELECT project FROM $TableContribGlob WHERE contributor = '$UserID' ";
+		$result = launchQuery($query);
+		return $result;
+	}

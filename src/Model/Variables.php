@@ -3,7 +3,7 @@
 	$hostGlob = 'localhost';
 	$bddGlob = 'scma';
 	$userGlob = 'root';
-	$passwdGlob = 'root';
+	$passwdGlob = 'root
 
 	// Noms des table
 	$TableUserGlob = "Users";
