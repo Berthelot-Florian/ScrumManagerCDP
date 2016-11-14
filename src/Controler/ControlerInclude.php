@@ -26,7 +26,10 @@
 		if(isset($_SESSION['ControlerBdd'])){
 			unset($_SESSION['ControlerBdd']);
 		}
-			if(isset($_SESSION['ControlerAnnexe'])){
+		if(isset($_SESSION['ControlerAnnexe'])){
 			unset($_SESSION['ControlerAnnexe']);
+		}
+		if(isset($_SESSION['ControlerUS'])){
+			unset($_SESSION['ControlerUS']);
 		}
 	}

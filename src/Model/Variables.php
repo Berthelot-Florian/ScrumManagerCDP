@@ -3,10 +3,11 @@
 	$hostGlob = 'localhost';
 	$bddGlob = 'scma';
 	$userGlob = 'root';
-	$passwdGlob = 'root
+	$passwdGlob = 'root';
 
 	// Noms des table
 	$TableUserGlob = "Users";
 	$TableProjetGlob = "Project";
 	$TableContribGlob = "ContributorProject";
-	$TableAnnexeGlob = "Annex";
+	$TableAnnexeGlob = "Annexe";
+	$TableUSGlob = "UserStory";
