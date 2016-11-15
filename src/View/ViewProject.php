@@ -10,7 +10,8 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Projet <?php echo $currProject['title']; ?> </title>
-	<link rel="stylesheet" href="../css/bootstrap.css"> 
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.css">
 	<link rel="stylesheet" href="../css/index.css">
 </head>
 <body>
@@ -32,7 +33,10 @@
 					<?php if(showButton($currProject)){ ?>
 						<div class="littlespace">
 							<a href="ViewAlterProject.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default">Modifier le projet</a>
-							<a href="ViewAddProjectContributor.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default">Ajouter un contributeur</a>
+							<a href="ViewAddProjectContributor.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter 
+							un contributeur</a>
+							<a href="ViewAnnexe.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"> Ajouter annexe</a>
+							<a href="ViewAjoutUS.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"> Ajouter US</a>
 						</div>
 					<?php } ?>
 				</div>

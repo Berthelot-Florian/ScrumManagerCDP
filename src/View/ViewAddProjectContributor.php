@@ -10,7 +10,8 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<title>Contributeurs du projet <?php echo $currProject['title']; ?> </title>
-	<link rel="stylesheet" href="../css/bootstrap.css"> 
+	<link rel="stylesheet" href="../css/bootstrap.css">
+	<link rel="stylesheet" href="../css/font-awesome-4.7.0/css/font-awesome.css">
 	<link rel="stylesheet" href="../css/index.css"> 
 </head>
 <body>

@@ -48,7 +48,6 @@
 	 			
 	 			echo "<form action=\"ViewAjoutUS.php?projet=".$projet."\" method=\"post\" >";
 	 	?>
-
 	 	<br />
 	 	<br />
 	 	<table class="Anntable">
@@ -60,7 +59,7 @@
 					 		<option value="Visitor">Visiteur</option>
 					 		<option value="TeamMember">Membre de l'équipe</option>
 					 		<option value="ProductOwner">ProductOwner</option>
-				 		<select name="rank" class="objForm">
+				 		</select>
 				 	</td>
 				</tr>
 				<tr>
@@ -89,9 +88,9 @@
 			</tbody>
 		</table>
 	 					
-	 	
-	 	<? }?>
-	 	
+	 	<? echo "</form>";
+	 	}?>
+	 	</center>
 
 	</body>
 </html>
