@@ -113,3 +113,18 @@
 		} 
 		return FALSE;
 	}
+
+	/**
+	 * [addContributor Permet d'ajouter un contributeur à un projet]
+	 * @param [project] $idProjet [id du projet auquel on rajoute un contributeur]
+	 * @param [contributor] $idContributor [id du contributeur ajouté au projet]
+	 * @return boolean [retourne TRUE si l'ajout s'est bien déroulé]
+	*/
+	function addContributor($idProjet,$idContributor){
+		global $TableContribGlob;
+		if(isContributor($idProjet)){
+			$query = "INSERT INTO $TableContribGlob ( `contributor`, `project` ) VALUES ('$idContributor','$idProjet')";
+			return $result = launchQuery($query);
+		}
+		return FALSE;
+	}

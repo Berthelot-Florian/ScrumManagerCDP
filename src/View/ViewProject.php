@@ -3,6 +3,7 @@
 	include '../Controler/ControlerInclude.php';
 	cleanInclude();
 	include '../Controler/ControlerProject.php';
+	include '../Controler/ControlerUser.php';
 	$currProject = getProjectById($_GET["projet"]);
 ?>
 <html>
@@ -19,20 +20,19 @@
 				<h1 class="panel-title"><strong> Projet: <?php echo $currProject['title']; ?></strong></h3>
 				<div class="panel-body">
 					<h3>ScrumMaster</h3>
-					<?php echo $currProject['scrummaster']; ?>
+					<?php echo getUserByID($currProject['scrummaster'])[3]; ?>
 					<h3>ProductOwner</h3>
-					<?php echo $currProject['productowner']; ?>
+					<?php echo getUserByID($currProject['productowner'])[3]; ?>
 					
 					<h3>KanBan</h3>
 					<h3>Listes Des Tâches</h3>
 					<h3>Matrice de Traçabilité</h3>
 					<h3>UserStory</h3>
 					<h3>Sprint</h3>
-					
 					<?php if(showButton($currProject)){ ?>
 						<div class="littlespace">
 							<a href="ViewAlterProject.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default">Modifier le projet</a>
-							<a href="todo.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default">Ajouter un contributeur</a>
+							<a href="ViewAddProjectContributor.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default">Ajouter un contributeur</a>
 						</div>
 					<?php } ?>
 				</div>
