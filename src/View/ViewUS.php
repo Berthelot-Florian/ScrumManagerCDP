@@ -51,6 +51,12 @@
 				AlterDifficultyUS($_POST['diff'],$idUS);
 				header("Refresh:0");
 	 		}
+
+		$projet = $_GET["projet"];
+		echo "<a class=\"btn btn-default\" href=\"ViewProject.php?projet=$projet\">" . "Retour à la page du projet"."</a>";
+			echo "<br />";
+ 			echo "<br />";	
+ 		
 		if(mysqli_num_rows($result)==0){
 	?>
 		
@@ -64,6 +70,8 @@
 		}
 	else{
 		?>
+
+		<a href="ViewAjoutUS.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"> Ajouter une UserStory</a>
 		<table class="table">
 			<thead>
 			  <tr>
@@ -171,7 +179,6 @@
 										</div>
 									</div>
 										<a style="text-decoration:none"  onclick="div_show(<?php echo $data[0];?>000)" >Modifier</a>
-										<a href="../Handler/SupprimerUS.php?projet=<?php echo $currProject['id']?>&US=<?php echo $data[0]?>" style="text-decoration:none" >Supprimer</a>
 										</td>  <?php } ?>
 							</tr>
 						
