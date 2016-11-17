@@ -24,19 +24,33 @@
 					<?php echo getUserByID($currProject['scrummaster'])[3]; ?>
 					<h3>ProductOwner</h3>
 					<?php echo getUserByID($currProject['productowner'])[3]; ?>
-					
+					<h3>Contributors</h3>
+					<?php
+						$users = getAllUsers(); 
+						while($row = mysqli_fetch_array($users,MYSQLI_ASSOC)){
+							if($row['id']==$currProject['scrummaster'] || $row['id']==$currProject['productowner'])
+								;
+							else
+								echo "$row[pseudo] ";
+						}
+					?>
 					<h3>KanBan</h3>
 					<h3>Listes Des Tâches</h3>
 					<h3>Matrice de Traçabilité</h3>
 					<h3>UserStory</h3>
 					<h3>Sprint</h3>
-					<?php if(showButton($currProject)){ ?>
-						<div class="littlespace">
-							<a href="ViewAlterProject.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default">Modifier le projet</a>
-							<a href="ViewAddProjectContributor.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter 
-							un contributeur</a>
-							<a href="ViewAnnexe.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"> Ajouter annexe</a>
-							<a href="ViewAjoutUS.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"> Ajouter US</a>
+					<h3>Annexes</h3>
+					<a href="ViewAnnexe.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i> Voir les annexes</a>
+					<?php if(settingsMenu($currProject)){ ?>
+						<div class="panel panel-danger">
+							<div class="panel-heading">	
+								<h1 class="panel-title"><strong>Modification du projet</strong></h1>
+								<br>
+								<a href="ViewAlterProject.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default">Modifier le projet</a>
+								<a href="ViewAddProjectContributor.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter un contributeur</a>
+								<a href="ViewDeleteProjectContributor.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-minus-circle"></i> Supprimer un contributeur</a>
+								<a href="ViewAjoutUS.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter US</a>
+							</div>
 						</div>
 					<?php } ?>
 				</div>
@@ -47,7 +61,7 @@
 
 <?php
 
-	function showButton($currentProject){
+	function settingsMenu($currentProject){
 
 		if(!isset($_SESSION['pseudo']))
 			return FALSE;
