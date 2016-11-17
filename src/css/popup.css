@@ -1,0 +1,68 @@
+div#popup {
+position:absolute;
+left:50%;
+top:17%;
+margin-left:-202px;
+}
+form#pop {
+max-width:300px;
+min-width:250px;
+padding:10px 50px;
+border:2px solid gray;
+border-radius:10px;
+background-color:#F8F8F8
+}
+p {
+margin-top:30px
+}
+h2 {
+background-color:#FEFFED;
+padding:20px 35px;
+margin:-10px -50px;
+text-align:center;
+border-radius:10px 10px 0 0
+}
+hr {
+margin:10px -50px;
+border:0;
+border-top:1px solid #ccc
+}
+input[type=text]#testpop {
+width:82%;
+padding:10px;
+margin-top:30px;
+border:1px solid #ccc;
+padding-left:40px;
+
+}
+textarea {
+background-repeat:no-repeat;
+background-position:5px 7px;
+width:82%;
+height:95px;
+padding:10px;
+resize:none;
+margin-top:30px;
+border:1px solid #ccc;
+padding-left:40px;
+font-size:16px;
+font-family:raleway;
+margin-bottom:30px
+}
+#submit {
+text-decoration:none;
+width:100%;
+text-align:center;
+display:block;
+background-color:#F8F8F8;
+color:#fff;
+border:1px solid #FFCB00;
+padding:10px 0;
+font-size:20px;
+cursor:pointer;
+border-radius:5px
+}
+span {
+color:red;
+font-weight:700
+}

@@ -50,10 +50,10 @@
 	 		if(isContributor($projet)){
 	 			while($row = mysqli_fetch_array($Annexe,MYSQLI_NUM)){
 	 			echo "<tr>";
+	 			echo "<td>".$row[3]."</td>";
 	 			echo "<td>".$row[2]."</td>";
-	 			echo "<td>".$row[1]."</td>";
-	 			echo "<td>"."<a href=\"../Annexes/$row[1]\">"."Afficher ce document"."</a>"."</td>";
-	 			echo "<td>"."<a href=\"../Handler/suppAnnexe.php?file=$row[1]&projet=$projet\">"."Supprimer"."</a>"."</td>";
+	 			echo "<td>"."<a href=\"../Annexes/$row[2]\">"."Afficher ce document"."</a>"."</td>";
+	 			echo "<td>"."<a href=\"../Handler/suppAnnexe.php?file=$row[2]&projet=$projet\">"."Supprimer"."</a>"."</td>";
 	 			echo "</tr>";
 	 			}	
 	 		} else {
