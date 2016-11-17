@@ -33,7 +33,7 @@
 						<h3>UserStory</h3>
 					</a>
 					<h3>Sprint</h3>
-					<?php if(!showButton($currProject)){ ?>
+					<?php if(showButton($currProject)){ ?>
 						<div class="littlespace">
 							<a href="ViewAlterProject.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default">Modifier le projet</a>
 							<a href="ViewAddProjectContributor.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter 
