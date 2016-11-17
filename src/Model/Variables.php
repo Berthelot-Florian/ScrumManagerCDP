@@ -9,5 +9,5 @@
 	$TableUserGlob = "Users";
 	$TableProjetGlob = "Project";
 	$TableContribGlob = "ContributorProject";
-	$TableAnnexeGlob = "Annex";
+	$TableAnnexeGlob = "Annexe";
 	$TableUSGlob = "UserStory";

@@ -102,7 +102,7 @@
 				}
 		}
 		
-		$result = getAllProjectByScMaID($_SESSION['id']);
+		$result = getAllProjectByContributorID($_SESSION['id']);
 		?>
 		</br>
 		<center>
