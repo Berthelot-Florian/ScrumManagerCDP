@@ -19,17 +19,17 @@
 -- Table structure for table `Annex`
 --
 
-DROP TABLE IF EXISTS `Annex`;
+DROP TABLE IF EXISTS `Annexe`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Annex` (
+CREATE TABLE `Annexe` (
   `id` smallint(6) NOT NULL AUTO_INCREMENT,
   `project` smallint(6) NOT NULL,
   `name` varchar(32) NOT NULL,
   `type` varchar(32) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `project` (`project`),
-  CONSTRAINT `Annex_ibfk_1` FOREIGN KEY (`project`) REFERENCES `Project` (`id`) ON DELETE CASCADE
+  CONSTRAINT `Annexe_ibfk_1` FOREIGN KEY (`project`) REFERENCES `Project` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

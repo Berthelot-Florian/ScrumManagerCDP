@@ -76,7 +76,7 @@ CREATE_CONTRIBUTORTASK_TABLE="CREATE TABLE ContributorTask (contributor SMALLINT
 							ON DELETE CASCADE,
 						PRIMARY KEY(contributor, Task));"
 
-CREATE_ANNEX_TABLE="CREATE TABLE Annex (id SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+CREATE_ANNEX_TABLE="CREATE TABLE Annexe (id SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 						project SMALLINT NOT NULL,
 						FOREIGN KEY (project)
 							REFERENCES Project(id)
@@ -93,7 +93,7 @@ echo $CREATE_SPRINT_TABLE >> tmp.sql
 echo $CREATE_TASK_TABLE >> tmp.sql
 echo $CREATE_CONTRIBUTORPROJECT_TABLE >> tmp.sql
 echo $CREATE_CONTRIBUTORTASK_TABLE >> tmp.sql
-echo $CREATE_ANNEX_TABLE >> tmp.sql
+echo $CREATE_ANNEXE_TABLE >> tmp.sql
 
 mysql -u$db_user -p -h$db_host < tmp.sql
 
