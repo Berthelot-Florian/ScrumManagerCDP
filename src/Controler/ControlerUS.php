@@ -15,7 +15,19 @@
 	 */
 	function AddUs($idProject,$rank,$action,$goal,$difficulty){
 		global $TableUSGlob;
-		$query = "INSERT INTO `UserStory` (`id`, `project`, `rank`, `action`, `goal`, `difficulty`) VALUES (NULL,'$idProject','$rank','$action','$goal','$difficulty') ";
+		$query = "INSERT INTO $TableUSGlob (`id`, `project`, `rank`, `action`, `goal`, `difficulty`) VALUES (NULL,'$idProject','$rank','$action','$goal','$difficulty') ";
+		return launchQuery($query);
+	}
+
+	/**
+	 * [DeleteUS Permet de supprimer une user story]
+	 * @param [int] $idUS [description]    
+	 * @return [boolean] TRUE si réussie, false sinon
+	 */
+	function DeleteUs($idUS){
+		global $TableUSGlob;
+		echo $idUS;
+		$query = "DELETE FROM $TableUSGlob WHERE id = '$idUS'";
 		return launchQuery($query);
 	}
 	

@@ -33,7 +33,7 @@
 	 	<?php 
 	 		$projet = $_GET["projet"];
 	 		
-	 		echo "<a class=\"btn btn-default\" href=\"ViewAjoutAnnexe.php?projet=$projet\">" . "Ajouter un document annexe au projet"."</a>";
+	 		echo "<a class=\"btn btn-default\" href=\"ViewAjoutAnnexe.php?projet=$projet\">"."Ajouter un document annexe au projet"."</a>";
  			echo "<br />";	
 	 		echo "<br />";	
 	 		$Annexe = getAnnexe($projet);

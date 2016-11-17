@@ -171,6 +171,7 @@
 										</div>
 									</div>
 										<a style="text-decoration:none"  onclick="div_show(<?php echo $data[0];?>000)" >Modifier</a>
+										<a href="../Handler/SupprimerUS.php?projet=<?php echo $currProject['id']?>&US=<?php echo $data[0]?>" style="text-decoration:none" >Supprimer</a>
 										</td>  <?php } ?>
 							</tr>
 						
