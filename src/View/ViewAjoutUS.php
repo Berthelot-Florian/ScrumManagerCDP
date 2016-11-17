@@ -32,7 +32,7 @@
 	 			//Testons si tout les champs sont correctement remplis
 	 			if(strlen($_POST['action'])>1 && strlen($_POST['rank'])>1 && strlen($_POST['goals'])>1 ) {
 	 				//Ajout de la US
-	 				if(AddUs($projet,$_POST['rank'],$_POST['action'],$_POST['goals'],$_POST['prio'])){
+	 				if(AddUs($projet,$_POST['rank'],$_POST['action'],$_POST['goals'],$_POST['diff'])){
 	 					echo "<h3>User Story correctement envoyé</h3>";	
 	 				}
 	 			} else {
@@ -42,7 +42,7 @@
 	 		}
 			 	
 	 		$projet = $_GET["projet"];
-	 		if(isContributor($projet)){
+	 		if(!isContributor($projet)){
 	 			echo '<h2> Vous n\'êtes pas contributeur de ce projet, vous ne pouvez pas le modifier</h2>';
 	 		} else {
 	 			
@@ -71,9 +71,9 @@
 					<td> <textarea type="text" name="goals" rows="2" cols="30"> </textarea></td>
 				</tr>
 				<tr>
-					<td>Priorité :</td>
+					<td>Difficulté :</td>
 					<td>
-						<select name="prio" class="objForm">
+						<select name="diff" class="objForm">
 							<?php 
 								for ($i = 1; $i <= 100; $i++) {
 								    echo "<option value=".$i.">".$i."</option>";
@@ -88,7 +88,7 @@
 			</tbody>
 		</table>
 	 					
-	 	<? echo "</form>";
+	 	<?php echo "</form>";
 	 	}?>
 	 	</center>
 

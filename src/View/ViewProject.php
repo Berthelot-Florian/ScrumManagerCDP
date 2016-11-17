@@ -28,7 +28,9 @@
 					<h3>KanBan</h3>
 					<h3>Listes Des Tâches</h3>
 					<h3>Matrice de Traçabilité</h3>
-					<h3>UserStory</h3>
+					<a style="text-decoration:none" href="ViewUS.php?projet=<?php echo $currProject['id'];?>">
+						<h3>UserStory</h3>
+					</a>
 					<h3>Sprint</h3>
 					<?php if(showButton($currProject)){ ?>
 						<div class="littlespace">

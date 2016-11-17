@@ -64,11 +64,11 @@
 	 * @param  [int]  $idProjet [id du projet a tester]
 	 * @return boolean           [Renvois TRUE si l'utilisateur est le PO et FALSE sinon]
 	 */
-	function isPO($id){
+	function isPO($id,$idUser){
 		global $TableProjetGlob;
 		$idProjet = intval($id);
 		if(isConnected()){
-			$query = "SELECT ProductOwner FROM $TableProjetGlob WHERE $idProjet = id ";
+			$query = "SELECT ProductOwner FROM $TableProjetGlob WHERE $idProjet = id AND $idUser = productowner";
 			$result = launchQuery($query);
 			$row = mysqli_fetch_array($result,MYSQLI_NUM);
 				if($_SESSION['id'] == $row[0]){

@@ -196,7 +196,8 @@ CREATE TABLE `UserStory` (
   `rank` varchar(32) NOT NULL,
   `action` varchar(32) NOT NULL,
   `goal` varchar(32) NOT NULL,
-  `priority` smallint(6) NOT NULL,
+  `priority` smallint(6) ,
+  `difficulty` smallint(6) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `project` (`project`),
   CONSTRAINT `UserStory_ibfk_1` FOREIGN KEY (`project`) REFERENCES `Project` (`id`) ON DELETE CASCADE
