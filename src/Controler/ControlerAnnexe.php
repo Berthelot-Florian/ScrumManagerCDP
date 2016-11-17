@@ -15,8 +15,8 @@
 	 */
 	function addAnnexe($idProjet,$file,$type){
 		global $TableAnnexeGlob;
-		$idProjet = intval($idProjet);
-		$query = "INSERT INTO $TableAnnexeGlob VALUES('$idProjet',$file','$type')";
+		//$idProjet = intval($idProjet);
+		$query = "INSERT INTO $TableAnnexeGlob ( `project`, `name`, `type`)  VALUES('$idProjet','$file','$type')";
 		$result = launchQuery($query);
 		return $result;
 	}
