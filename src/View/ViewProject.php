@@ -35,6 +35,7 @@
 						}
 					?>
 					<h3>KanBan</h3>
+
 					<h3>Listes Des Tâches</h3>
 					<h3>Matrice de Traçabilité</h3>
 					<a style="text-decoration:none" href="ViewUS.php?projet=<?php echo $currProject['id'];?>">
@@ -52,6 +53,8 @@
 								<a href="ViewAddProjectContributor.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter un contributeur</a>
 								<a href="ViewDeleteProjectContributor.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-minus-circle"></i> Supprimer un contributeur</a>
 								<a href="ViewAjoutUS.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter US</a>
+								<!--<a href="ViewUS.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"> Voir les UserStory (Kanban)</a>-->
+								<a href="ViewAnnexe.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter un annexe</a>
 							</div>
 						</div>
 					<?php } ?>

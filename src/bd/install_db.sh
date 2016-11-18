@@ -93,7 +93,7 @@ echo $CREATE_SPRINT_TABLE >> tmp.sql
 echo $CREATE_TASK_TABLE >> tmp.sql
 echo $CREATE_CONTRIBUTORPROJECT_TABLE >> tmp.sql
 echo $CREATE_CONTRIBUTORTASK_TABLE >> tmp.sql
-echo $CREATE_ANNEXE_TABLE >> tmp.sql
+echo $CREATE_ANNEX_TABLE >> tmp.sql
 
 mysql -u$db_user -p -h$db_host < tmp.sql
 
