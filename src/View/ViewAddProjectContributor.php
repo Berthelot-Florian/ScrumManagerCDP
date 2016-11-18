@@ -22,6 +22,9 @@
 			//header("Refresh:0");
 		}
 	?>
+	<a class="btn btn-default" href="ViewProject.php?projet=<?php echo $currProject['id']; ?>">Retour à la page du projet</a>
+	<br />
+ 	<br />
 	<h1>Ajout de contributeurs au projet <?php echo $currProject['title']; ?> </h1>
 	<form method="post" action="ViewAddProjectContributor.php?id=<?php echo $currProject['id']; ?>">
 	<select name="contributor" class="objForm">

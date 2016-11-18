@@ -115,6 +115,24 @@
 	}
 
 	/**
+	 * [isContributor Permet de tester si l'utilisateur connecter est contribiteur d'un projet]
+	 * @param  [id]  $idProjet [id du projet a tester]
+	 * @param  [id]  $idUser [id du user a tester]
+	 * @return boolean           [Renvois TRUE si l'utilisateur est contributeur et FALSE sinon]
+	 */
+	function isContributor2($idProjet,$idUser){
+		global $TableContribGlob;
+		if(isConnected()){
+			$query = "SELECT * FROM $TableContribGlob WHERE $idProjet = Project AND $idUser = Contributor  ";
+			$result = launchQuery($query);
+			if(mysqli_num_rows($result)==1){
+				return TRUE;
+			}
+		} 
+		return FALSE;
+	}
+
+	/**
 	 * [addContributor Permet d'ajouter un contributeur à un projet]
 	 * @param [project] $idProjet [id du projet auquel on rajoute un contributeur]
 	 * @param [contributor] $idContributor [id du contributeur ajouté au projet]
