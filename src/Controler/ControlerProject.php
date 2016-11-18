@@ -24,6 +24,11 @@
 			}
 			$idProject = getProjectByName($title)['id'];
 			$query = "INSERT INTO $TableContribGlob (`contributor`, `project`) VALUES ('$scrummaster','$idProject')";
+			$result = launchQuery($query);
+			if(!$result){
+				return false; 
+			}
+			$query = "INSERT INTO $TableContribGlob (`contributor`, `project`) VALUES ('$productowner','$idProject')";
 			return launchQuery($query);
 		}
 		return false;
@@ -112,7 +117,7 @@
 	 * @return [mysqli_result] [retourne tout les projets]
 	 */
 	function getAllProjectByContributorID($UserID){
-		global $TableContribGlob;
+		global $TableProjetGlob;
 		$query = "SELECT project FROM $TableContribGlob WHERE contributor = '$UserID' ";
 		$result = launchQuery($query);
 		return $result;
