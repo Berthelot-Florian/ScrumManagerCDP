@@ -6,6 +6,7 @@
 	include '../Controler/ControlerUser.php';
 	require '../Controler/ControlerSprint.php';
 	$currProject = getProjectById($_GET["projet"]);
+	ini_set('display_errors','on');
 ?>
 <html>
 <head>
@@ -43,7 +44,9 @@
 						<div class="Contrib">
 						<table class="ContribTable">
 							<tr>
-								<td></td><td class='AddCont'><a href="ViewAddProjectContributor.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i></a></td>
+								<?php if(isContributor( $_GET["projet"])) { ?>
+									<td></td><td class='AddCont'><a href="ViewAddProjectContributor.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i></a></td>
+								<?php }?> 
 							</tr>
 							<tr>
 								<td> <h3>Contributors</h3> </td>
@@ -89,7 +92,7 @@
 					
 						//Variable pour le div
 						$sprints = getSprints($idprojet);
-						$tabSprints;
+						$tabSprints = [];
 						$numSprint = 1;
 					
 						while($row = mysqli_fetch_assoc($sprints)){
@@ -101,19 +104,19 @@
 						echo "<table class=\"SptTable\">";
 						echo "<tr><td class=\"SptName\">Numero du sprint</td>";
 						foreach ($tabSprints as $key2 => $value2) {
-							echo "<td> ".$value2[number]."</td>";
+							echo "<td> ".$value2['number']."</td>";
 						}
 
 						echo "</tr>";
 						echo "<tr><td class=\"SptName\">Date de début</td>";
 						foreach ($tabSprints as $key2 => $value2) {
-							echo "<td> ".$value2[start]."</td>";
+							echo "<td> ".$value2['start']."</td>";
 						}
 						echo "</tr>";
 						
 						echo "<tr><td class=\"SptName\">Date de fin</td>";
 						foreach ($tabSprints as $key2 => $value2) {
-							echo "<td> ".$value2[end]."</td>";
+							echo "<td> ".$value2['end']."</td>";
 						}
 						echo "</tr>";
 
@@ -121,9 +124,9 @@
 						foreach ($tabSprints as $key2 => $value2) { 
 							?>
 							<td>
-								<?php if(isContributor($idprojet)) { ?>
+								
 								<a href="ViewKanban.php?projet=<?php echo "$idprojet"."&sprint=".$key2 ?>" class="btn btn-default"><i class="fa fa-eye"></i> Kanban</a>
-								<?php }?>
+								
 							</td>
 						<?php 
 						}
