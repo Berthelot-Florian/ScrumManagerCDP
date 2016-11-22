@@ -125,7 +125,7 @@
 
 	function getContribByProject($project){
 		global $TableContribGlob;
-		$query = "SELECT * FROM $TableContribGlob WHERE project = 4";
+		$query = "SELECT * FROM $TableContribGlob WHERE project = $project";
 		return launchQuery($query);
 	}
 
