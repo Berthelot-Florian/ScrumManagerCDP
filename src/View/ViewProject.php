@@ -19,28 +19,75 @@
 	<?php include 'ViewMenuBar.php' ?>
 		<div class="panel panel-info">
 			<div class="panel-heading">
-				<h1 class="panel-title"><strong> Projet: <?php echo $currProject['title']; ?></strong></h3>
-				<div class="panel-body">
-					<h3>ScrumMaster</h3>
-					<?php echo "<h4 class=\"nameContrib\">".getUserByID($currProject['scrummaster'])[3]."</h4>"; ?>
-					<h3>ProductOwner</h3>
-					<?php echo "<h4 class=\"nameContrib\">".getUserByID($currProject['productowner'])[3]."</h4>"; ?>
-					<h3>Contributors</h3>
-					<?php
-						$users = getContribByProject($_GET["projet"]); 
-						while($row = mysqli_fetch_array($users,MYSQLI_ASSOC)){
-							$row = getUserByID($row['contributor']);
-							if($row['0']==$currProject['scrummaster'] || $row['0']==$currProject['productowner'])
-								;
-							else
-								echo "<h4 class=\"nameContrib\">"."$row[3] "."</h4>";
-						}
-					?>
+				<h1 class="panel-title"><strong> Projet: <?php echo $currProject['title']; ?></strong></h1>
+				<div class="SMPO">
+					<table class="SMPO">
+						<tr>
+							<td>
+								<h3>ScrumMaster</h3>
+							</td>
+							<td>
+								<?php echo "<h1 class=\"nameContrib\">".getUserByID($currProject['scrummaster'])[3]."</h1>"; ?>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h3>ProductOwner</h3>
+							</td>
+							<td>
+								<?php echo "<h1 class=\"nameContrib\">".getUserByID($currProject['productowner'])[3]."</h1>"; ?>
+							</td>
+						</tr>
+						</table>
+						</div>
+						<div class="Contrib">
+						<table class="ContribTable">
+							<tr>
+								<td></td><td class='AddCont'><a href="ViewAddProjectContributor.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i></a></td>
+							</tr>
+							<tr>
+								<td> <h3>Contributors</h3> </td>
+								<td> <h3>Action</h3></td>
+							</tr>
+							<?php
+								$idprojet = $_GET["projet"];
+								$users = getContribByProject($_GET["projet"]); 
+								while($row = mysqli_fetch_array($users,MYSQLI_ASSOC)){
+									$row = getUserByID($row['contributor']);
+									if($row['0']==$currProject['scrummaster'] || $row['0']==$currProject['productowner'])
+										;
+									else {
+										echo "<tr>";
+											echo "<td>";
+												echo "<h4 class=\"nameContrib\">"."$row[3] "."</h4>";
+											echo "</td>";
+											echo "<td>";
+												if(isContributor($idprojet)){
+													?>
+
+													<a href="../Handler/RemoveContrib.php?projet=<?php echo "$idprojet" ?>&contrib=<?php echo"$row[0]" ?>"><i class="fa fa-window-close-o"></i></a>
+
+													<?php
+												} else {
+													echo "Vous n'êtes pas contributeur de ce projet";
+												}
+												
+											echo "</td>";
+										echo "</tr>";
+									}
+
+								}
+							?>
+						</table>
+					</div>
 					<div  class="panel-info">
-					<h3> Sprint du projet : </h3>
+					<h3 class="bli"> Sprint du projet : </h3>
 					<?php
+					//////////////////////////////////////////////////
+					// MENU DE VISU DE SPRINT
+					// //////////////////////////////////////////////////
+					
 						//Variable pour le div
-						$idprojet = $_GET["projet"];
 						$sprints = getSprints($idprojet);
 						$tabSprints;
 						$numSprint = 1;
@@ -109,7 +156,12 @@
 				</div>
 					<a style="text-decoration:none" href="ViewUS.php?projet=<?php echo $currProject['id'];?>">
 					</a>
-					<?php if(settingsMenu($currProject)){ ?>
+					
+					
+					<?php if(settingsMenu($currProject)){
+					//////////////////////////////////////////////////
+					// MENU DE VISUALISATION DU PROJET
+					// ////////////////////////////////////////////////// ?>
 						<div class="panel panel-title">
 							<div class="panel-heading">	
 								<h1 class="panel-title"><strong>Visualisation des informations du projet</strong></h1>
@@ -126,7 +178,11 @@
 				</div>
 					<a style="text-decoration:none" href="ViewUS.php?projet=<?php echo $currProject['id'];?>">
 					</a>
-					<?php if(settingsMenu($currProject)){ ?>
+					<?php if(settingsMenu($currProject)){ 
+					//////////////////////////////////////////////////
+					// MENU DE MODIFICATION DU PROJET
+					// //////////////////////////////////////////////////
+						?>
 						<div class="panel panel-danger">
 							<div class="panel-heading">	
 								<h1 class="panel-title"><strong>Modification du projet</strong></h1>

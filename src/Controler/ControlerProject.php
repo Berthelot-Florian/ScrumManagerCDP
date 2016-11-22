@@ -129,4 +129,10 @@
 		return launchQuery($query);
 	}
 
+	function removeContrib($UserId,$project){
+		global $TableContribGlob;
+		$query = $query="DELETE FROM $TableContribGlob WHERE project='$project' AND contributor='$UserId'";
+		$result = launchQuery($query);
+		return $result; 
+	}
 	
