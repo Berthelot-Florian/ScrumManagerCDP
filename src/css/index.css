@@ -19,6 +19,22 @@
 	text-align: center;
 }
 
+.SptTable {
+	border-style: solid;
+	border-collapse: collapse;
+	height: 100px; 
+	width: 95%;
+	background-color: rgba(246, 244, 96, 0.4);
+	text-align: center;
+}
+
+.SptName {
+	background-color: rgba(300, 100, 100, 0.4);
+	font-color: black;
+	font-size: 18px;
+	border-style: groove;
+}
+
 .annThd {
 	background-color: rgba(114, 109, 168, 0.5);
 	height: 75px;
@@ -27,4 +43,14 @@
 	text-align: center;
 
 
+}
+
+.nameContrib {
+	border-left-style: solid;
+	border-width: 5px;
+	border-color: #404040;
+	background-color: lightgrey;
+	background-repeat: false;
+	font-size: 18px;
+	text-align: 60px;
 }

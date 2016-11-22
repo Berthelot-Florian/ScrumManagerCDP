@@ -11,3 +11,4 @@
 	$TableContribGlob = "ContributorProject";
 	$TableAnnexeGlob = "Annexe";
 	$TableUSGlob = "UserStory";
+	$TableSprintglob = "Sprint";

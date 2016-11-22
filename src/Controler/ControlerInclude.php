@@ -32,4 +32,8 @@
 		if(isset($_SESSION['ControlerUS'])){
 			unset($_SESSION['ControlerUS']);
 		}
+		if(isset($_SESSION['ControlerSprint'])){
+			unset($_SESSION['ControlerSprint']);
+		}
+		
 	}

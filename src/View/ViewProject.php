@@ -4,6 +4,7 @@
 	cleanInclude();
 	include '../Controler/ControlerProject.php';
 	include '../Controler/ControlerUser.php';
+	require '../Controler/ControlerSprint.php';
 	$currProject = getProjectById($_GET["projet"]);
 ?>
 <html>
@@ -21,29 +22,110 @@
 				<h1 class="panel-title"><strong> Projet: <?php echo $currProject['title']; ?></strong></h3>
 				<div class="panel-body">
 					<h3>ScrumMaster</h3>
-					<?php echo getUserByID($currProject['scrummaster'])[3]; ?>
+					<?php echo "<h4 class=\"nameContrib\">".getUserByID($currProject['scrummaster'])[3]."</h4>"; ?>
 					<h3>ProductOwner</h3>
-					<?php echo getUserByID($currProject['productowner'])[3]; ?>
+					<?php echo "<h4 class=\"nameContrib\">".getUserByID($currProject['productowner'])[3]."</h4>"; ?>
 					<h3>Contributors</h3>
 					<?php
-						$users = getAllUsers(); 
+						$users = getContribByProject($_GET["projet"]); 
 						while($row = mysqli_fetch_array($users,MYSQLI_ASSOC)){
-							if($row['id']==$currProject['scrummaster'] || $row['id']==$currProject['productowner'])
+							$row = getUserByID($row['contributor']);
+							if($row['0']==$currProject['scrummaster'] || $row['0']==$currProject['productowner'])
 								;
 							else
-								echo "$row[pseudo] ";
+								echo "<h4 class=\"nameContrib\">"."$row[3] "."</h4>";
 						}
 					?>
-					<h3>KanBan</h3>
+					<div  class="panel-info">
+					<h3> Sprint du projet : </h3>
+					<?php
+						//Variable pour le div
+						$idprojet = $_GET["projet"];
+						$sprints = getSprints($idprojet);
+						$tabSprints;
+						$numSprint = 1;
+					
+						while($row = mysqli_fetch_assoc($sprints)){
+							$tabSprints[$numSprint] = $row;
+							$numSprint++;
+						}
 
-					<h3>Listes Des Tâches</h3>
-					<h3>Matrice de Traçabilité</h3>
+						echo "<center>";
+						echo "<table class=\"SptTable\">";
+						echo "<tr><td class=\"SptName\">Numero du sprint</td>";
+						foreach ($tabSprints as $key2 => $value2) {
+							echo "<td> ".$value2[number]."</td>";
+						}
+
+						echo "</tr>";
+						echo "<tr><td class=\"SptName\">Date de début</td>";
+						foreach ($tabSprints as $key2 => $value2) {
+							echo "<td> ".$value2[start]."</td>";
+						}
+						echo "</tr>";
+						
+						echo "<tr><td class=\"SptName\">Date de fin</td>";
+						foreach ($tabSprints as $key2 => $value2) {
+							echo "<td> ".$value2[end]."</td>";
+						}
+						echo "</tr>";
+
+						echo "<tr><td class=\"SptName\">Kanban du sprint</td>";
+						foreach ($tabSprints as $key2 => $value2) { 
+							?>
+							<td>
+								<?php if(isContributor($idprojet)) { ?>
+								<a href="ViewKanban.php?projet=<?php echo "$idprojet"."&sprint=".$key2 ?>" class="btn btn-default"><i class="fa fa-eye"></i> Kanban</a>
+								<?php }?>
+							</td>
+						<?php 
+						}
+						echo "</tr>";
+				
+						echo "<tr><td class=\"SptName\">Tache du sprint</td>";
+						foreach ($tabSprints as $key2 => $value2) { ?>
+							<td>
+								<?php if(isContributor($idprojet)) { ?>
+								<a href="ViewTasks.php?projet=<?php echo "$idprojet"."&sprint=".$key2 ?>" class="btn btn-default"><i class="fa fa-eye"></i> Tache</a>
+								<?php }?>
+							</td>
+						<?php
+						}
+						echo "</tr>";
+
+						echo "<tr><td class=\"SptName\">Modifier le sprint</td>";
+						foreach ($tabSprints as $key2 => $value2) { ?>
+							<td>
+							<?php if(isContributor($idprojet)) { ?>
+								<a href="ViewAlterSprint.php?projet=<?php echo "$idprojet"."&sprint=".$key2 ?>" class="btn btn-default"><i class="fa fa-cog"></i> Modifier le Sprint</a>
+								<?php }?>
+							</td>
+						<?php
+						}
+						echo "</tr>";
+						echo "</table>";
+				?>
+
+				</div>
 					<a style="text-decoration:none" href="ViewUS.php?projet=<?php echo $currProject['id'];?>">
-						<h3>UserStory</h3>
 					</a>
-					<h3>Sprint</h3>
-					<h3>Annexes</h3>
-					<a href="ViewAnnexe.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i> Voir les annexes</a>
+					<?php if(settingsMenu($currProject)){ ?>
+						<div class="panel panel-title">
+							<div class="panel-heading">	
+								<h1 class="panel-title"><strong>Visualisation des informations du projet</strong></h1>
+								<br>
+								<a href="ViewTask.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i>Voir les tâches</a>
+								<a href="ViewMatTracabilite.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i> Voir la Matrice de Traçabilité</a>
+								<a href="ViewUS.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i> Voir toutes les UserStorys</a>
+					
+								<a href="ViewAnnexe.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i> Voir les Annexes</a>
+							</div>
+						</div>
+					<?php } ?>
+
+				</div>
+					<a style="text-decoration:none" href="ViewUS.php?projet=<?php echo $currProject['id'];?>">
+					</a>
 					<?php if(settingsMenu($currProject)){ ?>
 						<div class="panel panel-danger">
 							<div class="panel-heading">	
@@ -54,11 +136,16 @@
 								<a href="ViewDeleteProjectContributor.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-minus-circle"></i> Supprimer un contributeur</a>
 								<a href="ViewAjoutUS.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter US</a>
 								<!--<a href="ViewUS.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"> Voir les UserStory (Kanban)</a>-->
-								<a href="ViewAnnexe.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter un annexe</a>
+								<a href="ViewAjoutAnnexe.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter un annexe</a>
 							</div>
 						</div>
 					<?php } ?>
+				
+				
+
+
 				</div>
+
 			</div>
 		</div>
 </body>

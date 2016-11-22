@@ -122,3 +122,11 @@
 		$result = launchQuery($query);
 		return $result;
 	}
+
+	function getContribByProject($project){
+		global $TableContribGlob;
+		$query = "SELECT * FROM $TableContribGlob WHERE project = 4";
+		return launchQuery($query);
+	}
+
+	

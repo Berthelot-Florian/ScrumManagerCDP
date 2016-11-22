@@ -56,7 +56,7 @@
 	 			echo "<tr>";
 	 			echo "<td>".$row[3]."</td>";
 	 			echo "<td>".$row[2]."</td>";
-	 			echo "<td>"."<a href=\"../Annexes/$row[3]\">"."Afficher ce document"."</a>"."</td>";
+	 			echo "<td>"."<a href=\"../Annexes/$row[2]\">"."Afficher ce document"."</a>"."</td>";
 	 			echo "<td>"."<a href=\"../Handler/suppAnnexe.php?file=$row[2]&projet=$projet\">"."Supprimer"."</a>"."</td>";
 	 			echo "</tr>";
 	 			}	

@@ -37,5 +37,3 @@
 		$row = $result->fetch_array(MYSQLI_NUM);
 		return $row;
 	}
-
-	

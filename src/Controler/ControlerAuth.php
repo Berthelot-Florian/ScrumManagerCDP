@@ -141,8 +141,10 @@
 	function addContributor($idProjet,$idContributor){
 		global $TableContribGlob;
 		if(isContributor($idProjet)){
-			$query = "INSERT INTO $TableContribGlob ( `contributor`, `project` ) VALUES ('$idContributor','$idProjet')";
+			$query = "INSERT INTO $TableContribGlob VALUES ('$idContributor','$idProjet')";
 			return $result = launchQuery($query);
 		}
 		return FALSE;
 	}
+
+	

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+error_reporting();
 	include '../Controler/ControlerInclude.php';
 	cleanInclude();
 	include '../Controler/ControlerProject.php';
@@ -15,7 +16,8 @@
 	<link rel="stylesheet" href="../css/index.css"> 
 </head>
 <body>
-	<?php include 'ViewMenuBar.php' ?>
+	<?php include 'ViewMenuBar.php' ;
+	?>
 	<?php 
 		if(isset($_POST['req'])){
 			addContributor($_POST['project'], $_POST['contributor']);
@@ -26,6 +28,9 @@
 	<br />
  	<br />
 	<h1>Ajout de contributeurs au projet <?php echo $currProject['title']; ?> </h1>
+	<center>
+	<br />
+	<br />
 	<form method="post" action="ViewAddProjectContributor.php?id=<?php echo $currProject['id']; ?>">
 	<select name="contributor" class="objForm">
 		<?php
@@ -37,6 +42,8 @@
 	</select>
 	<input type="hidden" name="project" value=<?php echo "\"$currProject[id]\"" ?>>
 	<input type="hidden" name="req" value="1">
+	<br />
+	<br />
 	<input type="submit" name="AlterProject" value="&#43 Ajouter un contributeur" class="btn btn-default"/>
 	</form>
 </body>
