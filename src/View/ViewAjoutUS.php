@@ -54,13 +54,7 @@
 	 		<tbody>
 	 			<tr>
 	 				<td> En tant que : </td>
-	 				<td>
-	 					<select name="rank" class="objForm">
-					 		<option value="Visitor">Visiteur</option>
-					 		<option value="TeamMember">Membre de l'équipe</option>
-					 		<option value="ProductOwner">ProductOwner</option>
-				 		</select>
-				 	</td>
+	 				<td> <textarea type="text" name="rank" rows="2" cols="30"> </textarea></td>
 				</tr>
 				<tr>
 					<td> Je souhaite pouvoir : </td>

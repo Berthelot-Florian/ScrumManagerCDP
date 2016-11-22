@@ -194,6 +194,7 @@
 								<a href="ViewAjoutUS.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter US</a>
 								<!--<a href="ViewUS.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"> Voir les UserStory (Kanban)</a>-->
 								<a href="ViewAjoutAnnexe.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter un annexe</a>
+								<a href="../Handler/RemoveProject.php?projet=<?php echo $_GET["projet"] ?>" class="btn btn-default"><i class="fa fa-trash"></i> Supprimer le projet</a>
 							</div>
 						</div>
 					<?php } ?>
