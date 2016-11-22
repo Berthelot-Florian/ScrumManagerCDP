@@ -11,7 +11,7 @@
 	}
 	$host  = $_SERVER['HTTP_HOST'];
 	$uri   = rtrim(dirname(dirname($_SERVER['PHP_SELF'])), '/\\');
-	$extra = '/View/ViewUS.php?projet='.$currProject['id'].'?>';
+	$extra = '/View/ViewUS.php?projet='.$currProject['id'];
 	header("Location: http://$host$uri$extra");
 	exit;
 ?>
