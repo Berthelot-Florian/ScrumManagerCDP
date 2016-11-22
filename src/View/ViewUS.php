@@ -95,7 +95,7 @@
 							if($data[5]!=null){echo $data[5];} 
 							//Si l'utilisateur est le productowner on lui donne le droit de changer la priorité
 							if( isset($_SESSION['id']) && isPO($currProject['id'])){  ?>
-								<div id="prio_modal" class = "modal fade" style="display: none;">
+								<div id="prio_modal<?php echo $data[0] ?>" class = "modal fade" style="display: none;">
 										<div id="popup">
 											<form id="pop" method="post" action="ViewUS.php?projet=<?php echo $currProject['id']?>&US=<?php echo $data[0] ?>">
 												<a id="close" class="glyphicon glyphicon-remove"  onclick ="div_hide(<?php echo $data[0] ?>)"></a>
@@ -113,12 +113,12 @@
 											
 										</div>
 									</div>
-									<a style="text-decoration:none"  data-toggle="modal" data-target="#prio_modal" style="cursor:  pointer;"><span class="glyphicon glyphicon-cog"></span></a>
+									<a style="text-decoration:none"  data-toggle="modal" data-target="#prio_modal<?php echo $data[0] ?>" style="cursor:  pointer;"><span class="glyphicon glyphicon-cog"></span></a>
 										<?php } ?>
 								</td>
 								<?php if(isContributor($currProject['id'])){ ?> 
 										<td>
-											<div id="modal" class = "modal fade" style="display: none;" >
+											<div id="modal<?php echo $data[0] ?>" class = "modal fade" style="display: none;" >
 												<div id="popup">
 													<form id="pop"   method="post" action="ViewUS.php?projet=<?php echo $currProject['id']?>&US=<?php echo $data[0] ?>">
 														<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -151,7 +151,7 @@
 													 </form>											
 												</div>
 											</div>
-											<a data-toggle="modal" data-target="#modal" style="cursor:  pointer;">Modifier</a>
+											<a data-toggle="modal" data-target="#modal<?php echo $data[0] ?>" style="cursor:  pointer;">Modifier</a>
 											<a href = "../Handler/RemoveUS.php?projet=<?php echo $currProject['id']?>&US=<?php echo $data[0] ?>">Supprimer</a>
 										</td>  <?php } ?>
 							</tr>
