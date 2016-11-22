@@ -42,19 +42,17 @@
 						</table>
 						</div>
 						<div class="Contrib">
-						<table class="ContribTable">
+						<?php if(isContributor( $_GET["projet"])) { ?>
+									<a href="ViewAddProjectContributor.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter un contributeur</a>
+						<?php }?>
+						<table class="ContribTable"> 
 							<tr>
-								<?php if(isContributor( $_GET["projet"])) { ?>
-									<td></td><td class='AddCont'><a href="ViewAddProjectContributor.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-plus"></i></a></td>
-								<?php }?> 
-							</tr>
-							<tr>
-								<td> <h3>Contributors</h3> </td>
-								<td> <h3>Action</h3></td>
+								<th> <h3>Contributors</h3> </th>
+								<th> <h3>Action</h3></th>
 							</tr>
 							<?php
 								$idprojet = $_GET["projet"];
-								$users = getContribByProject($_GET["projet"]); 
+								$users = getContribByProject($_GET["projet"]);
 								while($row = mysqli_fetch_array($users,MYSQLI_ASSOC)){
 									$row = getUserByID($row['contributor']);
 									if($row['0']==$currProject['scrummaster'] || $row['0']==$currProject['productowner'])
