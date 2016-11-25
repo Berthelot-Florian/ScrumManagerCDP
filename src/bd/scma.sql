@@ -37,9 +37,9 @@ CREATE TABLE `Annexe` (
 -- Dumping data for table `Annex`
 --
 
-LOCK TABLES `Annex` WRITE;
-/*!40000 ALTER TABLE `Annex` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Annex` ENABLE KEYS */;
+LOCK TABLES `Annexe` WRITE;
+/*!40000 ALTER TABLE `Annexe` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Annexe` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -107,6 +107,7 @@ CREATE TABLE `Project` (
   `scrummaster` smallint(6) NOT NULL,
   `productowner` smallint(6) NOT NULL,
   `description` text,
+
   PRIMARY KEY (`id`),
   KEY `scrummaster` (`scrummaster`),
   KEY `productowner` (`productowner`),
@@ -137,7 +138,8 @@ CREATE TABLE `Sprint` (
   `project` smallint(6) NOT NULL,
   `start` date NOT NULL,
   `end` date NOT NULL,
-  PRIMARY KEY (`id`),
+  `state` text,
+  PRIMARY KEY (`id`,`project`,`number`),
   KEY `project` (`project`),
   CONSTRAINT `Sprint_ibfk_1` FOREIGN KEY (`project`) REFERENCES `Project` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
