@@ -36,7 +36,8 @@
 	 		echo "<a class=\"btn btn-default\" href=\"ViewProject.php?projet=$projet\">" . "Retour à la page du projet"."</a>";
 			echo "<br />";
  			echo "<br />";	
-	 		echo "<a class=\"btn btn-default\" href=\"ViewAjoutAnnexe.php?projet=$projet\">" . "Ajouter un document annexe au projet"."</a>";
+	 		if(isContributor($projet))
+	 			echo "<a class=\"btn btn-default\" href=\"ViewAjoutAnnexe.php?projet=$projet\">" . "Ajouter un document annexe au projet"."</a>";
  			
  			
 	 		echo "<br />";	

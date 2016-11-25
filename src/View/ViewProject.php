@@ -82,8 +82,8 @@
 						</table>
 					</div>
 					<div  class="panel-info">
-					<h3 class="bli"> Sprint du projet : </h3>
 					<?php
+
 					//////////////////////////////////////////////////
 					// MENU DE VISU DE SPRINT
 					// //////////////////////////////////////////////////
@@ -99,7 +99,18 @@
 						}
 
 						echo "<center>";
-						echo "<table class=\"SptTable\">";
+						echo "<table class=\'table-Spt\'>";
+						?>
+						<thead>
+							<tr>
+								<td> <h3 class="bli"> Sprint du projet : </h3> </td>
+								<?php if(isContributor($idprojet)){ ?>
+									<td class="tdSprint"> <a href="./ViewCreateSprint.php?projet=<?php echo $_GET["projet"] ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter un sprint</a></td>
+								<?php } ?>
+							</tr>
+						</thead>
+						<tbody class="SptTable">
+						<?php
 						echo "<tr><td class=\"SptName\">Numero du sprint</td>";
 						foreach ($tabSprints as $key2 => $value2) {
 							echo "<td> ".$value2['number']."</td>";
@@ -119,11 +130,11 @@
 						echo "</tr>";
 
 						echo "<tr><td class=\"SptName\">Kanban du sprint</td>";
-						foreach ($tabSprints as $key2 => $value2) { 
-							?>
+						foreach ($tabSprints as $key2 => $value2) {
+						?>
 							<td>
 								
-								<a href="ViewKanban.php?projet=<?php echo "$idprojet"."&sprint=".$key2 ?>" class="btn btn-default"><i class="fa fa-eye"></i> Kanban</a>
+								<a href="ViewKanban.php?projet=<?php echo "$idprojet"."&sprint=".$value2['number'] ?>" class="btn btn-default"><i class="fa fa-eye"></i> Kanban</a>
 								
 							</td>
 						<?php 
@@ -134,7 +145,7 @@
 						foreach ($tabSprints as $key2 => $value2) { ?>
 							<td>
 								<?php if(isContributor($idprojet)) { ?>
-								<a href="ViewTasks.php?projet=<?php echo "$idprojet"."&sprint=".$key2 ?>" class="btn btn-default"><i class="fa fa-eye"></i> Tache</a>
+								<a href="ViewTasks.php?projet=<?php echo "$idprojet"."&sprint=".$value2['number'] ?>" class="btn btn-default"><i class="fa fa-eye"></i> Tache</a>
 								<?php }?>
 							</td>
 						<?php
@@ -145,12 +156,26 @@
 						foreach ($tabSprints as $key2 => $value2) { ?>
 							<td>
 							<?php if(isContributor($idprojet)) { ?>
-								<a href="ViewAlterSprint.php?projet=<?php echo "$idprojet"."&sprint=".$key2 ?>" class="btn btn-default"><i class="fa fa-cog"></i> Modifier le Sprint</a>
+								<a href="ViewAlterSprint.php?projet=<?php echo "$idprojet"."&sprint=".$value2['number'] ?>" class="btn btn-default"><i class="fa fa-cog"></i> Modifier le Sprint</a>
 								<?php }?>
 							</td>
 						<?php
 						}
+						echo "</tr>"; 
+						echo "<tr><td class=\"SptName\">Etat du sprint</td>";
+						foreach ($tabSprints as $key2 => $value2) { 
+							if($value2['state'] == "todo"){
+								echo "<td  class=\"tdTodo\">ToDo</td>";
+							} else if($value2['state'] == "ongoing"){
+								echo "<td  class=\"tdOnGoing\">En cours</td>";
+							} else if($value2['state'] == "done"){
+								echo "<td  class=\"tdDone\">Finis</td>";
+							} else {
+								echo "<td> Non défini </td>";
+							}
+						}
 						echo "</tr>";
+						echo "</tbody>";
 						echo "</table>";
 				?>
 

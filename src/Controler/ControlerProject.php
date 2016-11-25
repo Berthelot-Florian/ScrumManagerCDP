@@ -28,8 +28,12 @@
 			if(!$result){
 				return false; 
 			}
-			$query = "INSERT INTO $TableContribGlob (`contributor`, `project`) VALUES ('$productowner','$idProject')";
-			return launchQuery($query);
+			if ($scrummaster == $productowner){
+				return true;
+			} else {
+				$query = "INSERT INTO $TableContribGlob (`contributor`, `project`) VALUES ('$productowner','$idProject')";
+				return launchQuery($query);
+			}
 		}
 		return false;
 	}
