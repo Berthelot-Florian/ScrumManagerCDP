@@ -159,7 +159,7 @@
 					</a>
 					
 					
-					<?php if(settingsMenu($currProject)){
+					<?php 
 					//////////////////////////////////////////////////
 					// MENU DE VISUALISATION DU PROJET
 					// ////////////////////////////////////////////////// ?>
@@ -174,12 +174,12 @@
 								<a href="ViewAnnexe.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i> Voir les Annexes</a>
 							</div>
 						</div>
-					<?php } ?>
+				
 
 				</div>
 					<a style="text-decoration:none" href="ViewUS.php?projet=<?php echo $currProject['id'];?>">
 					</a>
-					<?php if(settingsMenu($currProject)){ 
+					<?php if(isContributor($idprojet)){ 
 					//////////////////////////////////////////////////
 					// MENU DE MODIFICATION DU PROJET
 					// //////////////////////////////////////////////////
@@ -210,7 +210,7 @@
 </html>
 
 <?php
-
+	// CA FAIT QUOI CA LA ? ?????????????
 	function settingsMenu($currentProject){
 
 		if(!isset($_SESSION['pseudo']))
