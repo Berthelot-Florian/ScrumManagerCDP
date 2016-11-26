@@ -35,5 +35,8 @@
 		if(isset($_SESSION['ControlerSprint'])){
 			unset($_SESSION['ControlerSprint']);
 		}
+		if(isset($_SESSION['ControlerTask'])){
+			unset($_SESSION['ControlerTask']);
+		}
 		
 	}

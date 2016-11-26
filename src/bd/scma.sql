@@ -166,13 +166,13 @@ CREATE TABLE `Task` (
   `project` smallint(6) NOT NULL,
   `description` text,
   `effort` smallint(6) DEFAULT NULL,
-  `sprint` smallint(6) DEFAULT NULL,
+  `userstory` smallint(6) DEFAULT NULL,
   `state` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `project` (`project`),
-  KEY `sprint` (`sprint`),
+  KEY `userstory` (`userstory`),
   CONSTRAINT `Task_ibfk_1` FOREIGN KEY (`project`) REFERENCES `Project` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `Task_ibfk_2` FOREIGN KEY (`sprint`) REFERENCES `Sprint` (`id`) ON DELETE CASCADE
+  CONSTRAINT `Task_ibfk_2` FOREIGN KEY (`userstory`) REFERENCES `UserStory` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

@@ -26,9 +26,14 @@
 	 */
 	function DeleteUs($idUS){
 		global $TableUSGlob;
-		echo $idUS;
+		global $TableTaskGlob;
 		$query = "DELETE FROM $TableUSGlob WHERE id = '$idUS'";
-		return launchQuery($query);
+		$result = launchQuery($query);
+		if($result){
+			$query = "DELETE FROM $TableTaskGlob WHERE userstory = '$idUS'";
+			$result = launchQuery($query);
+		}
+		return $result;
 	}
 	
 	/**
@@ -38,7 +43,7 @@
 	 */
 	function GetUSByProject($idProject){
 		global $TableUSGlob;
-		$query = "SELECT * FROM $TableUSGlob WHERE project = '$idProject'";
+		$query = "SELECT * FROM $TableUSGlob WHERE project = '$idProject' ORDER BY id ASC";
 		$result = launchQuery($query);
 		return $result;
 	}
@@ -105,7 +110,30 @@
 
 	function AlterDifficultyUS($diffUS,$idUS){
 		global $TableUSGlob;
-		echo $diffUS;
 		$query = "UPDATE $TableUSGlob SET difficulty = '$diffUS' WHERE id = '$idUS'";
 		$result = launchQuery($query);
 	}
+	
+	/**
+	 * [GetUSIdInProject Permet de récupérer la position dans le projet d'une US]
+	 * @param [int] $idProject
+	 * @param [int] $idUS
+	 * @return [int] The position of the US 
+	 */
+	
+	function GetUSIdInProject($idProject,$idUS){
+		$result = GetUSByProject($idProject);
+		$idUSInPage = 1;
+		while($data = $result->fetch_array(MYSQLI_NUM)){
+			if($data[0] == $idUS)
+				return $idUSInPage;
+			$idUSInPage++;
+		}
+	}
+	
+	
+	
+	
+	
+	
+	

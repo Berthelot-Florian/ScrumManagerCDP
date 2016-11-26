@@ -51,7 +51,8 @@ CREATE_SPRINT_TABLE="CREATE TABLE Sprint (id SMALLINT NOT NULL AUTO_INCREMENT PR
 							REFERENCES Project(id)
 							ON DELETE CASCADE,
 						start DATE NOT NULL,
-						end DATE NOT NULL);"
+						end DATE NOT NULL,
+						state text);"
 
 CREATE_TASK_TABLE="CREATE TABLE Task (id SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 						project SMALLINT NOT NULL,
@@ -60,9 +61,9 @@ CREATE_TASK_TABLE="CREATE TABLE Task (id SMALLINT NOT NULL AUTO_INCREMENT PRIMAR
 							ON DELETE CASCADE,						
 						description TEXT,
 						effort SMALLINT,
-						sprint SMALLINT,
-						FOREIGN KEY (sprint)
-							REFERENCES Sprint(id)
+						userstory SMALLINT NOT NULL,
+						FOREIGN KEY (UserStory)
+							REFERENCES UserStory(id)
 							ON DELETE CASCADE,
 						state TINYINT NOT NULL);"
 

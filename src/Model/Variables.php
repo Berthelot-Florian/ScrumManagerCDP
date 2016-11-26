@@ -12,3 +12,4 @@
 	$TableAnnexeGlob = "Annexe";
 	$TableUSGlob = "UserStory"; 
 	$TableSprintglob = "Sprint";
+	$TableTaskGlob = "Task";

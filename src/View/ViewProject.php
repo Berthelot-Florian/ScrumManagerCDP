@@ -192,8 +192,8 @@
 							<div class="panel-heading">	
 								<h1 class="panel-title"><strong>Visualisation des informations du projet</strong></h1>
 								<br>
-								<a href="ViewTask.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i>Voir les tâches</a>
-								<a href="ViewMatTracabilite.php?id=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i> Voir la Matrice de Traçabilité</a>
+								<a href="ViewTask.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i>Voir les tâches</a>
+								<a href="ViewMatTracabilite.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i> Voir la Matrice de Traçabilité</a>
 								<a href="ViewUS.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i> Voir toutes les UserStorys</a>
 					
 								<a href="ViewAnnexe.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i> Voir les Annexes</a>
