@@ -130,6 +130,13 @@
 			$idUSInPage++;
 		}
 	}
+
+	function getUS($idUs){
+		global $TableUSGlob;
+		$query = "SELECT * FROM $TableUSGlob WHERE id='$idUs' ";
+		$result = launchQuery($query);
+		return $result;
+	}
 	
 	
 	

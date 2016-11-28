@@ -63,4 +63,23 @@
 		$query = "DELETE FROM $TableTaskGlob WHERE id = '$idTask'";
 		return launchQuery($query);
 	}
+
+
+	/**
+	 * [getTask description]
+	 * @param  [type] $idTask [description]
+	 * @return [type]         [description]
+	 */
+	function getTask($idTask){
+		global $TableTaskGlob;
+		$query = "SELECT * FROM $TableTaskGlob WHERE id='$idTask'";
+		$result = launchQuery($query);
+		return $result;
+	}
 	
+	function getTaskBySprint($projet,$sprint){
+		global $TableSprintTaskGlob;
+		$query = "SELECT * FROM $TableSprintTaskGlob WHERE projet='$projet' AND sprint='$sprint'";
+		$result = launchQuery($query);
+		return $result;
+	}

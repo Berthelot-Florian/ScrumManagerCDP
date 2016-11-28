@@ -35,14 +35,35 @@
 	border-style: groove;
 }
 
+.SMPO {
+	font-color: black;
+	font-size: 18px;
+	text-align: center;
+	width: 40%;
+	position: ;
+	float:left;
+	margin-left:50px;
+
+}
+
+.Contrib {
+	border-style: ;
+	margin-left:50%;
+}
+.ContribTable {
+	height: 100px; 
+	width: 50%;
+	text-align: center;
+	border-width: 5px;
+}
+
+
 .annThd {
 	background-color: rgba(114, 109, 168, 0.5);
 	height: 75px;
 	border-collapse: collapse;
 	border-style: solid;
 	text-align: center;
-
-
 }
 
 .nameContrib {
@@ -53,4 +74,39 @@
 	background-repeat: false;
 	font-size: 18px;
 	text-align: 60px;
+}
+
+.AddCont {
+	text-align: right;
+}
+
+.tdSprint {
+	text-align: right;
+}
+
+.tdTodo {
+	text-align: center;
+	background-color: rgba(350, 50, 50, 0.8);
+	text-decoration-color: black;
+	text-decoration-style: bold;
+}
+
+.tdOnGoing {
+	text-align: center;
+	background-color: rgba(255, 153, 0, 1);
+}
+
+.tdDone {
+	text-align: center;
+	background-color: rgba(50, 244, 50, 0.8);
+}
+
+.sprintTable {
+	text-align: center;
+	height: 50%; 
+	width: 50%;
+}
+
+.sprintThead {
+	background-color: lightgrey;
 }

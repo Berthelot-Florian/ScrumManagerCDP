@@ -133,3 +133,9 @@
 			return true;
 		}
 	}
+
+	function removeSprint($projet,$sprint){
+		global $TableSprintglob;
+		$query ="DELETE FROM $TableSprintglob WHERE `project`='$projet' AND `number`='$sprint' ";
+		return launchQuery($query);
+	}

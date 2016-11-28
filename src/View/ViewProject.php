@@ -145,7 +145,7 @@
 						foreach ($tabSprints as $key2 => $value2) { ?>
 							<td>
 								<?php if(isContributor($idprojet)) { ?>
-								<a href="ViewTasks.php?projet=<?php echo "$idprojet"."&sprint=".$value2['number'] ?>" class="btn btn-default"><i class="fa fa-eye"></i> Tache</a>
+								<a href="ViewTask.php?projet=<?php echo "$idprojet"."&sprint=".$value2['number'] ?>" class="btn btn-default"><i class="fa fa-eye"></i> Tache</a>
 								<?php }?>
 							</td>
 						<?php
@@ -173,6 +173,19 @@
 							} else {
 								echo "<td> Non défini </td>";
 							}
+						}
+						echo "</tr>";
+						echo "</tr>"; 
+						echo "<tr><td class=\"SptName\">Action</td>";
+						foreach ($tabSprints as $key2 => $value2) { ?>
+							<td>
+							
+								<a href="ViewSprint.php?projet=<?php echo "$idprojet"."&sprint=".$value2['number'] ?>" class="btn btn-default"><i class="fa fa-eye"></i> Détails</a>
+							<?php if(isContributor($idprojet)) { ?>
+								<a href="../Handler/RemoveSprint.php?projet=<?php echo "$idprojet"."&sprint=".$value2['number'] ?>" class="btn btn-default"><i class="fa fa-window-close-o"></i></a>
+							<?php }?>
+							</td>
+						<?php
 						}
 						echo "</tr>";
 						echo "</tbody>";
