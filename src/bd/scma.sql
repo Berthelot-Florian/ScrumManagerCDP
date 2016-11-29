@@ -195,6 +195,7 @@ DROP TABLE IF EXISTS `UserStory`;
 CREATE TABLE `UserStory` (
   `id` smallint(6) NOT NULL AUTO_INCREMENT,
   `project` smallint(6) NOT NULL,
+  `sprint` smallint(6) NOT NULL,
   `rank` varchar(32) NOT NULL,
   `action` varchar(32) NOT NULL,
   `goal` varchar(32) NOT NULL,
@@ -202,7 +203,8 @@ CREATE TABLE `UserStory` (
   `difficulty` smallint(6) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `project` (`project`),
-  CONSTRAINT `UserStory_ibfk_1` FOREIGN KEY (`project`) REFERENCES `Project` (`id`) ON DELETE CASCADE
+  CONSTRAINT `project_ibfk_1` FOREIGN KEY (`project`) REFERENCES `Project` (`id`) ON DELETE CASCADE
+  CONSTRAINT `sprint_ibfk_1` FOREIGN KEY (`sprint`) REFERENCES `sprint` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -252,3 +254,6 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2016-11-09 22:18:37
+
+
+

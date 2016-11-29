@@ -13,9 +13,9 @@
 	 * @param [String] $goals     
 	 * @return [boolean] TRUE si réussie, false sinon
 	 */
-	function AddUs($idProject,$rank,$action,$goal,$difficulty){
+	function AddUs($idProject,$sprint,$rank,$action,$goal,$difficulty){
 		global $TableUSGlob;
-		$query = "INSERT INTO $TableUSGlob (`id`, `project`, `rank`, `action`, `goal`, `difficulty`) VALUES (NULL,'$idProject','$rank','$action','$goal','$difficulty') ";
+		$query = "INSERT INTO $TableUSGlob (`id`, `project`,`sprint`, `rank`, `action`, `goal`, `difficulty`) VALUES (NULL,'$idProject',$sprint,'$rank','$action','$goal','$difficulty') ";
 		return launchQuery($query);
 	}
 
@@ -68,7 +68,6 @@
 	 * @param [int] $actiobUS
 	 * @return Void
 	 */
-	
 	function AlterActionUS($actionUS,$idUS){
 		global $TableUSGlob;
 		$query = "UPDATE $TableUSGlob SET action = '$actionUS' WHERE id = '$idUS'";
@@ -131,9 +130,26 @@
 		}
 	}
 
+	/**
+	 * [getUS Permet de récupérer toutes les information d'une US avec son ID]
+	 * @param  [int] $idUs [id de la userStory]
+	 * @return [mysqli_result]       [information de la US]
+	 */
 	function getUS($idUs){
 		global $TableUSGlob;
 		$query = "SELECT * FROM $TableUSGlob WHERE id='$idUs' ";
+		$result = launchQuery($query);
+		return $result;
+	}
+
+	/**
+	 * [GetUSByProjectSprint Permet de récupérer tout les US d'un sprint]
+	 * @param [int] $idProject [numéro du projet]
+	 * @param [int] $sprint    [numéro du sprint]
+	 */
+	function GetUSByProjectSprint($idProject,$sprint){
+		global $TableUSGlob;
+		$query = "SELECT * FROM $TableUSGlob WHERE project = '$idProject' AND sprint='$sprint'";
 		$result = launchQuery($query);
 		return $result;
 	}

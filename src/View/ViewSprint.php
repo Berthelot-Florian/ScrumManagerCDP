@@ -103,96 +103,102 @@
   				</tr>
   			<tbody>
   			<?php 
-  				//Récupération des tâches du sprint
-  				$listTask = getTaskBySprint($projet,$sprint);
-  				while($row = mysqli_fetch_array($listTask,MYSQLI_ASSOC)){
+
+  				/*
+  				 A REVOIR ---------
+  				 */
+  				//Récupération des us du sprint
+  				$listUS = GetUSByProjectSprint($projet,$infosprint['id']);
+  				//$listUS = GetUSByProjectSprint($projet,0);
+  				while($us = mysqli_fetch_array($listUS,MYSQLI_ASSOC)){
   					//Récupération des infos de la tâche
+  					$listTask = getTaskByUs($us['id']);
+  					while($task = mysqli_fetch_array($listTask,MYSQLI_ASSOC)){
+	  					if($task['state'] == 0){
+							echo "<tr  class=\"tdTodo\">";
+						} else if($task['state'] == 1){
+							echo "<tr  class=\"tdOnGoing\">";
+						} else if($task['state'] == 2){
+							echo "<tr  class=\"tdDone\">";
+						} else if($task['state'] == 3 ){
+							echo "<tr class=\"tdDone\">";
+						} else {
+							echo "<tr>";
+						}
+						echo "<td>".$task['description']."</td>";
+	  					echo "<td>".$task['effort']."</td>";
+  						
+  						// METTRE PAR FONCTION
+						//Affichage de l'état
+	  					echo "<td>".ToStringState($task['state'])."</td>";
+	  					
+	  					//Affichage de l'US
+	  					$us = getUS($task['userstory']);
+	  					$us = mysqli_fetch_array($us,MYSQLI_ASSOC);
+						echo "<td>";
+  						echo "En tant que ".$us['rank']." je souhaiterais ".$us['action']." dans le but de ".$us['goal'];
+
+						echo "</td>";
+	  					
+	  					echo "<td>"; ?>
+						<div id="modal<?php echo $task['id'] ?>" class = "modal fade" style="display: none;" >
+								<div id="popup">
+										<form id="pop"   method="post" action="ViewSprint.php?projet=<?php echo $projet ?>&sprint=<?php echo $sprint ?>">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h4 class="modal-title">Modification de la Tâche</h4>
+											</div>
+											
+											<label for="description" class="ui-hidden-accessible">Description :</label>
+											<textarea type="text" name="description" rows="2" cols="30"><?php echo $task['description']?></textarea>
+											
+											<label for="effort" class="ui-hidden-accessible">Effort :</label>
+											<select name="effort" class="objForm">
+												<?php 
+													echo "<option value=".$task['effort']." selected=\"selected\">".$task['effort']."</option>";
+													for ($i = 1; $i <= 100; $i++) {
+														echo "<option value=".$i.">".$i."</option>";
+													}	
+												?>
+											</select>
+											
+											<label for="US" class="ui-hidden-accessible">UserStory liée :</label>
+											<select name="US" class="objForm">
+												<?php 
+													$allUS = GetUSByProject($projet);
+													echo "<option value=".$task['userstory']." selected=\"selected\">".GetUSIdInProject($projet,$task['userstory'])."</option>";
+													while($tmpUS = $allUS->fetch_array(MYSQLI_NUM))
+														if($tmpUS[0] != $task['userstory'])
+														echo "<option value=".$tmpUS[0].">".GetUSIdInProject($projet,$tmpUS[0])."</option>";
+												?>
+											</select><br />
+											
+											<label for="state" class="ui-hidden-accessible">État : </label>
+											<select name="state" class="objForm">
+												<?php 
+													echo "<option value=".$task['state']." selected=\"selected\">".ToStringState($task['state'])."</option>";
+													for ($i = 0; $i <= 3; $i++) {
+														if($i != $task['state'])
+															echo "<option value=".$i.">".ToStringState($i)."</option>";
+													}	
+												?>
+											</select>
+											
+											<div class="modal-footer">
+												<button type="submit" name="task" value="<?php echo $task['id'] ?>">Envoyer</button>
+											</div>
+										 </form>											
+									</div>
+								</div>
+								<a data-toggle="modal" data-target="#modal<?php echo $task['id'] ?>" class="btn btn-default" style="cursor:  pointer;"><i class="fa fa-cog"></i> Modifier</a>  					<?php 
+	  					echo "</tr>";
+  					}
+
   					$task = getTask($row['task']);
   					$task = mysqli_fetch_array($task,MYSQLI_ASSOC);  	
   					//Mise de la couleur sur la ligne			
-  					if($task['state'] == 0){
-						echo "<tr  class=\"tdTodo\">";
-					} else if($task['state'] == 1){
-						echo "<tr  class=\"tdOnGoing\">";
-					} else if($task['state'] == 2){
-						echo "<tr  class=\"tdDone\">";
-					} else if($task['state'] == 3 ){
-						echo "<tr class=\"tdDone\">";
-					} else {
-						echo "<tr>";
-					}
-  					echo "<td>".$task['description']."</td>";
-  					echo "<td>".$task['effort']."</td>";
-  					//Affichage de l'état
-  					if($task['state'] == 0){
-						echo "<td >A faire</td>";
-					} else if($task['state'] == 1){
-						echo "<td >En cours</td>";
-					} else if($task['state'] == 2){
-						echo "<td >En test</td>";
-					} else if($task['state'] == 3 ){
-						echo "<td> Finis </td>";
-					} else {
-						echo "<td> Etat inconnu </td>";
-					}
-  					//Affichage de l'US
-  					$us = getUS($task['userstory']);
-  					$us = mysqli_fetch_array($us,MYSQLI_ASSOC);
-  					echo "<td>";
-  					echo "En tant que ".$us['rank']." je souhaiterais ".$us['action']." dans le but de ".$us['goals'];
-  					echo "</td>";
-  					echo "<td>"; ?>
-					<div id="modal<?php echo $task['id'] ?>" class = "modal fade" style="display: none;" >
-							<div id="popup">
-									<form id="pop"   method="post" action="ViewSprint.php?projet=<?php echo $projet ?>&sprint=<?php echo $sprint ?>">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal">&times;</button>
-											<h4 class="modal-title">Modification de la Tâche</h4>
-										</div>
-										
-										<label for="description" class="ui-hidden-accessible">Description :</label>
-										<textarea type="text" name="description" rows="2" cols="30"><?php echo $task['description']?></textarea>
-										
-										<label for="effort" class="ui-hidden-accessible">Effort :</label>
-										<select name="effort" class="objForm">
-											<?php 
-												echo "<option value=".$task['effort']." selected=\"selected\">".$task['effort']."</option>";
-												for ($i = 1; $i <= 100; $i++) {
-													echo "<option value=".$i.">".$i."</option>";
-												}	
-											?>
-										</select>
-										
-										<label for="US" class="ui-hidden-accessible">UserStory liée :</label>
-										<select name="US" class="objForm">
-											<?php 
-												$allUS = GetUSByProject($projet);
-												echo "<option value=".$task['userstory']." selected=\"selected\">".GetUSIdInProject($projet,$task['userstory'])."</option>";
-												while($tmpUS = $allUS->fetch_array(MYSQLI_NUM))
-													if($tmpUS[0] != $task['userstory'])
-													echo "<option value=".$tmpUS[0].">".GetUSIdInProject($projet,$tmpUS[0])."</option>";
-											?>
-										</select><br />
-										
-										<label for="state" class="ui-hidden-accessible">État : </label>
-										<select name="state" class="objForm">
-											<?php 
-												echo "<option value=".$task['state']." selected=\"selected\">".ToStringState($task['state'])."</option>";
-												for ($i = 0; $i <= 3; $i++) {
-													if($i != $task['state'])
-														echo "<option value=".$i.">".ToStringState($i)."</option>";
-												}	
-											?>
-										</select>
-										
-										<div class="modal-footer">
-											<button type="submit" name="task" value="<?php echo $task['id'] ?>">Envoyer</button>
-										</div>
-									 </form>											
-								</div>
-							</div>
-							<a data-toggle="modal" data-target="#modal<?php echo $task['id'] ?>" class="btn btn-default" style="cursor:  pointer;"><i class="fa fa-cog"></i> Modifier</a>  					<?php 
-  					echo "</tr>";
+  					  					
+  					
 
 
   				}

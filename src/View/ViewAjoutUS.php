@@ -11,6 +11,7 @@
 	    	require '../Controler/ControlerUser.php';
 	 		require '../Controler/ControlerUS.php';
 	 		require '../Controler/ControlerProject.php';
+	 		require '../Controler/ControlerSprint.php';
 	 	?>
 
 	    <link rel="stylesheet" href="../css/bootstrap.css"> 
@@ -32,7 +33,7 @@
 	 			//Testons si tout les champs sont correctement remplis
 	 			if(strlen($_POST['action'])>1 && strlen($_POST['rank'])>1 && strlen($_POST['goals'])>1 ) {
 	 				//Ajout de la US
-	 				if(AddUs($projet,$_POST['rank'],$_POST['action'],$_POST['goals'],$_POST['diff'])){
+	 				if(AddUs($projet,$_POST['sprint'],$_POST['rank'],$_POST['action'],$_POST['goals'],$_POST['diff'])){
 	 					echo "<h3>User Story correctement envoyé</h3>";	
 	 				}
 	 			} else {
@@ -77,11 +78,34 @@
 					</td>
 				</tr>
 				<tr>
+					<td>Sprint :</td>
+					<td>
+
+						<select name="sprint" class="objForm">
+							<?php
+								$sprints = getSprints($projet);
+								print_r($sprints);
+								echo "<option value=\"0\">0</option>";
+								while($sprint = mysqli_fetch_array($sprints,MYSQLI_ASSOC)){
+									echo "<option value=".$sprint['number'].">".$sprint['number']."</option>";
+								}	
+							?>
+						</select>
+						
+					</td>
+				</tr>
+				<tr>
 					<td colspan="2"><input type="submit" value="Envoyer" /></td>
 				</tr>
 			</tbody>
 		</table>
 	 					
+	 					<?php 
+						while($sprint = mysqli_fetch_array($sprints,MYSQLI_ASSOC)){
+							print_r($sprint);
+							printf("coucou");
+						}
+						 ?>
 	 	<?php echo "</form>";
 	 	}?>
 	 	</center>

@@ -6,7 +6,6 @@
 	$currProject = getProjectById($_GET["projet"]);
 	$currTask = $_GET["Task"];	
 	if(isConnected() && isContributor($currProject['id'])){
-		echo "bonjour";
 		DeleteTask($currTask);
 	}
 	$host  = $_SERVER['HTTP_HOST'];

@@ -95,11 +95,11 @@
 				<!--- Affichage de chaque US -->
 				<tr>
 					<td><?php echo $idUSInPage;?></td>
-					<td>En tant que <?php echo $data[2]; ?>, je souhaite pouvoir <?php echo $data[3]; ?>, dans le but de <?php echo $data[4];?>. </td>
-					<td><?php echo $data[6];?></td>
+					<td>En tant que <?php echo $data[3]; ?>, je souhaite pouvoir <?php echo $data[4]; ?>, dans le but de <?php echo $data[5];?>. </td>
+					<td><?php echo $data[7];?></td>
 					<td>
 					<?php 
-							if($data[5]!=null){echo $data[5];} 
+							if($data[6]!=null){echo $data[6];} 
 							//Si l'utilisateur est le productowner on lui donne le droit de changer la priorité
 							if( isset($_SESSION['id']) && isPO($currProject['id'])){  ?>
 								<div id="prio_modal<?php echo $data[0] ?>" class = "modal fade" style="display: none;">
@@ -133,15 +133,15 @@
 															<h4 class="modal-title">Modification de la UserStory <?php echo $idUSInPage ?> </h4>
 														</div>
 														<label for="rank" class="ui-hidden-accessible">En tant que :</label>
-														<textarea type="text" name="rank" rows="2" cols="30"><?php echo $data[2]?></textarea>
+														<textarea type="text" name="rank" rows="2" cols="30"><?php echo $data[3]?></textarea>
 														<label for="action" class="ui-hidden-accessible">Je souhaite pouvoir : </label>
-														<textarea type="text" name="action" rows="2" cols="30"><?php echo $data[3]?></textarea>
+														<textarea type="text" name="action" rows="2" cols="30"><?php echo $data[4]?></textarea>
 														<label for="goals" class="ui-hidden-accessible">Dans le but de : </label>
-														<textarea type="text" name="goals" rows="2" cols="30"><?php echo $data[4] ?></textarea>
+														<textarea type="text" name="goals" rows="2" cols="30"><?php echo $data[5] ?></textarea>
 														<label for="diff" class="ui-hidden-accessible">Difficulté </label>
 															<select name="diff" class="objForm">
 																<?php 
-																	echo "<option value=".$data[6]." selected=\"selected\">".$data[6]."</option>";
+																	echo "<option value=".$data[7]." selected=\"selected\">".$data[7]."</option>";
 																	for ($i = 1; $i <= 100; $i++) {
 																		echo "<option value=".$i.">".$i."</option>";
 																	}	
@@ -169,9 +169,10 @@
 														<label for="effort" class="ui-hidden-accessible">Effort :</label>
 														<select name="effort" class="objForm">
 																<?php 
-																	echo "<option value=".$data[6]." selected=\"selected\">".$data[6]."</option>";
+																	//echo "<option value=".$data[7]." selected=\"selected\">".$data[7]."</option>";
 																	for ($i = 1; $i <= 100; $i++) {
 																		echo "<option value=".$i.">".$i."</option>";
+																		//echo "<option value=".$i.">".$i."</option>";
 																	}	
 																?>
 														</select>

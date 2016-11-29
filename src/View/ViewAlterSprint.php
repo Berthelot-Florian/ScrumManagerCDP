@@ -43,9 +43,10 @@
 
 
 
-	 			echo "<a class=\"btn btn-default\" href=\"ViewProject.php?projet=$projet\">" . "Retour à la page du projet"."</a>";
-		 	?>
-			<center>
+	 			echo "<a class=\"btn btn-default\" href=\"ViewProject.php?projet=$projet\">" . "Retour à la page du projet"."</a>"; ?>
+	 			<br />
+	 			
+		 	<center>
 	  		<table>
 				<thead>
 	  				<tr>
@@ -104,7 +105,9 @@
 
 				</tbody>
 			</table>
-
+			</center>
+			<a href="ViewSprint.php?projet=<?php echo "$projet"."&sprint=".$sprint ?>" class="btn btn-default"><i class="fa fa-eye"></i> Détails du sprint</a>
+			<center>
 			<?php
 			  	$infoSprint = getSprint($projet,$sprint);
 

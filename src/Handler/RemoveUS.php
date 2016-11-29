@@ -6,7 +6,6 @@
 	$currProject = getProjectById($_GET["projet"]);
 	$currUS = $_GET["US"];	
 	if(isConnected() && isContributor($currProject['id'])){
-		echo "bonjour";
 		DeleteUs($currUS);
 	}
 	$host  = $_SERVER['HTTP_HOST'];

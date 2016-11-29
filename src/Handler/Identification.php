@@ -6,7 +6,6 @@
 	$password = $_POST['password'];
 	
 	if(!empty($login) || !empty($password)){
-		printf("%s %s",$login,$password);
 		connectUser($login,$password);
 	}
 	

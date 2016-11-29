@@ -52,7 +52,13 @@
 		return $row;
 	}
 
-
+	/**
+	 * [addSprint Permet d'ajouter un sprint]
+	 * @param [int] $idProjet [id du projet]
+	 * @param [int] $num      [numéro du sprint]
+	 * @param [string] $start    [date de début]
+	 * @param [string] $end      [date de fin]
+	 */
 	function addSprint($idProjet,$num,$start,$end){
 		global $TableSprintglob;
 		$state = "todo";

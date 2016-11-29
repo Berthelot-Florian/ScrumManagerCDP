@@ -15,6 +15,10 @@
 	 */
 	function AddTask($idProject,$description,$effort,$idUS){
 		global $TableTaskGlob;
+		printf("id project ".$idProject."\n");
+		printf("description ".$description."\n");
+		printf("effort ".$effort."\n");
+		printf("idUS ".$idUS."\n");
 		$query = "INSERT INTO $TableTaskGlob (`project`, `description`, `effort`, `userstory`,`state` ) VALUES ('$idProject','$description','$effort','$idUS',0) ";
 		return launchQuery($query);
 	}
@@ -77,9 +81,9 @@
 		return $result;
 	}
 	
-	function getTaskBySprint($projet,$sprint){
-		global $TableSprintTaskGlob;
-		$query = "SELECT * FROM $TableSprintTaskGlob WHERE projet='$projet' AND sprint='$sprint'";
+	function getTaskByUs($us){
+		global $TableTaskGlob;
+		$query = "SELECT * FROM $TableTaskGlob WHERE userstory='$us'";
 		$result = launchQuery($query);
 		return $result;
 	}
