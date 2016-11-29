@@ -13,3 +13,4 @@
 	$TableUSGlob = "UserStory"; 
 	$TableSprintglob = "Sprint";
 	$TableTaskGlob = "Task";
+	$TableContribTaskGlob = "ContributorTask"
