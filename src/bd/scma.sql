@@ -199,12 +199,12 @@ CREATE TABLE `UserStory` (
   `rank` varchar(32) NOT NULL,
   `action` varchar(32) NOT NULL,
   `goal` varchar(32) NOT NULL,
-  `priority` smallint(6) ,
+  `priority` smallint(6),
   `difficulty` smallint(6) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `project` (`project`),
-  CONSTRAINT `project_ibfk_1` FOREIGN KEY (`project`) REFERENCES `Project` (`id`) ON DELETE CASCADE
-  CONSTRAINT `sprint_ibfk_1` FOREIGN KEY (`sprint`) REFERENCES `sprint` (`id`) ON DELETE CASCADE
+  CONSTRAINT `UserStory_ibfk_1` FOREIGN KEY (`project`) REFERENCES `Project` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `UserStory_ibfk_2` FOREIGN KEY (`sprint`) REFERENCES `Sprint` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
