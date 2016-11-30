@@ -15,3 +15,6 @@ To install database, two files are avaible :
 -an installation script here : _src/bd/install_db.sh_
 	(usage : ./install_db.sh [HOST] [USER])
 
+##Usage
+
+Coming ...
