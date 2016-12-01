@@ -112,7 +112,11 @@
 		$result = launchQuery($query);
 		return $result;
 	}
-
+	/**
+	 * [getTasksOfSprint Permet de récupérer toutes les tâches d'un sprint]
+	 * @param  [int] $idSprint [id du sprint]
+	 * @return [Mysqli_result]     [tâches du sprint]
+	 */
 	function getTasksOfSprint($idSprint){
 		global $TableTaskGlob;
 		global $TableUSGlob;
@@ -120,7 +124,11 @@
 		$result = launchQuery($query);
 		return $result;
 	}
-
+	/**
+	 * [getUntakenTask Permet de récupérer les tâches non affectés àun utilisateur d'un sprint]
+	 * @param  [int] $idSprint [id du sprint]
+	 * @return [Mysqli_result]     [tâches non affectés du sprint]
+	 */
 	function getUntakenTask($idSprint){
 		global $TableTaskGlob;
 		global $TableUSGlob;
@@ -129,7 +137,12 @@
 		$result = launchQuery($query);
 		return $result;	
 	}
-
+	/**
+	 * [getToDoTask Permet de récupérer toutes les tâches à faire d'un utilisateur sur un sprint]
+	 * @param  [int] $idSprint [id du sprint]
+	 * @param  [int] $idUser [id de l'utilisateur]
+	 * @return [Mysqli_result]     [tâches à faire de l'utilisateur sur le sprint]
+	 */
 	function getToDoTask($idSprint, $idUser){
 		global $TableTaskGlob;
 		global $TableUSGlob;
@@ -138,7 +151,12 @@
 		$result = launchQuery($query);
 		return $result;
 	}
-
+	/**
+	 * [getOnGoingTask Permet de récupérer toutes les tâches en cours d'un utilisateur sur un sprint]
+	 * @param  [int] $idSprint [id du sprint]
+	 * @param  [int] $idUser [id de l'utilisateur]
+	 * @return [Mysqli_result]     [tâches en cours de l'utilisateur sur le sprint]
+	 */
 	function getOnGoingTask($idSprint, $idUser){
 		global $TableTaskGlob;
 		global $TableUSGlob;
@@ -147,7 +165,12 @@
 		$result = launchQuery($query);
 		return $result;
 	}
-
+	/**
+	 * [getOnTestTask Permet de récupérer toutes les tâches en cours de test d'un utilisateur sur un sprint]
+	 * @param  [int] $idSprint [id du sprint]
+	 * @param  [int] $idUser [id de l'utilisateur]
+	 * @return [Mysqli_result]     [tâches en cours de test de l'utilisateur sur le sprint]
+	 */
 	function getOnTestTask($idSprint, $idUser){
 		global $TableTaskGlob;
 		global $TableUSGlob;
@@ -156,7 +179,12 @@
 		$result = launchQuery($query);
 		return $result;
 	}
-
+	/**
+	 * [getDoneTask Permet de récupérer toutes les tâches finies d'un utilisateur sur un sprint]
+	 * @param  [int] $idSprint [id du sprint]
+	 * @param  [int] $idUser [id de l'utilisateur]
+	 * @return [Mysqli_result]     [tâches finies de l'utilisateur sur le sprint]
+	 */
 	function getDoneTask($idSprint, $idUser){
 		global $TableTaskGlob;
 		global $TableUSGlob;
@@ -180,4 +208,14 @@
 			mysqli_stmt_bind_result($allTask,$usTasks);
 		}
 		return $allTask;
+	}
+	/**
+	 * [updateTask Permet de modifier l'état d'avancement d'un sprint]
+	 * @param [int] $newState [valeur de l'état]
+	 * @param [int] $idTask  [id de la tâche]
+	 */
+	function updateState($newState,$idTask){
+		global $TableTaskGlob;
+		$query = "UPDATE $TableTaskGlob SET state = '$newState' WHERE id = '$idTask'";
+		$result = launchQuery($query);
 	}
