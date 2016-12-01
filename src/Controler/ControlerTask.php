@@ -216,5 +216,6 @@
 	function updateState($newState,$idTask){
 		global $TableTaskGlob;
 		$query = "UPDATE $TableTaskGlob SET state = '$newState' WHERE id = '$idTask'";
+		echo $query;
 		$result = launchQuery($query);
 	}

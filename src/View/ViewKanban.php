@@ -55,32 +55,32 @@
     						<td>"."$row[3]"."</td>
     						<td>";
     						while($taskToDo = mysqli_fetch_array($toDo,MYSQLI_ASSOC)){
-    							echo "lol";
+    							echo $taskToDo['description'];
     							if(isContributor($_GET["projet"])){
-    								echo "<a href="."../Handler/MoveTaskToRight.php?projet"."><i class="."fa fa-arrow-right"."></i></a>";
+    								echo "<a href=\"../Handler/MoveTaskToRight.php?task=".$taskToDo["id"]."&projet=".$_GET["projet"]."&sprint=".$_GET["sprint"]."\"><i class=\"fa fa-arrow-right\"></i></a>";
     							}
     						};
     						echo "</td><td>";
     						while($taskOnGoing = mysqli_fetch_array($onGoing,MYSQLI_ASSOC)){
-    							echo "lol";
+    							echo $taskOnGoing['description'];
     							if(isContributor($_GET["projet"])){
-    								echo "<a href="."../Handler/MoveTaskToLeft.php?projet"."><i class="."fa fa-arrow-left"."></i></a>";
-    								echo "<a href="."../Handler/MoveTaskToRight.php?projet"."><i class="."fa fa-arrow-right"."></i></a>";
+    								echo "<a href=\"../Handler/MoveTaskToLeft.php?task=".$taskOnGoing["id"]."&projet=".$_GET["projet"]."&sprint=".$_GET["sprint"]."\"><i class=\"fa fa-arrow-left\"></i></a>";
+    								echo "<a href=\"../Handler/MoveTaskToRight.php?task=".$taskOnGoing["id"]."&projet=".$_GET["projet"]."&sprint=".$_GET["sprint"]."\"><i class=\"fa fa-arrow-right\"></i></a>";
     							}
     						};
     						echo "</td><td>";
     						while($taskOnTest = mysqli_fetch_array($onTest,MYSQLI_ASSOC)){
-    							echo "lol";
+    							echo $taskOnTest['description'];
     							if(isContributor($_GET["projet"])){
-    								echo "<a href="."../Handler/MoveTaskToLeft.php?projet"."><i class="."fa fa-arrow-left"."></i></a>";
-    								echo "<a href="."../Handler/MoveTaskToRight.php?projet"."><i class="."fa fa-arrow-right"."></i></a>";
+    								echo "<a href=\"../Handler/MoveTaskToLeft.php?task=".$taskOnTest["id"]."&projet=".$_GET["projet"]."&sprint=".$_GET["sprint"]."\"><i class=\"fa fa-arrow-left\"></i></a>";
+    								echo "<a href=\"../Handler/MoveTaskToRight.php?task=".$taskOnTest["id"]."&projet=".$_GET["projet"]."&sprint=".$_GET["sprint"]."\"><i class=\"fa fa-arrow-right\"></i></a>";
     							}
     						};
     						echo "</td><td>";
     						while($taskDone = mysqli_fetch_array($done,MYSQLI_ASSOC)){
-    							echo "lol";
+    							echo $taskDone['description'];
     							if(isContributor($_GET["projet"])){
-    								echo "<a href="."../Handler/MoveTaskToLeft.php?projet"."><i class="."fa fa-arrow-left"."></i></a>";
+    								echo "<a href=\"../Handler/MoveTaskToLeft.php?task=".$taskDone["id"]."&projet=".$_GET["projet"]."&sprint=".$_GET["sprint"]."\"><i class=\"fa fa-arrow-left\"></i></a>";
     							}
     						};
     				echo "</td></tr>";
