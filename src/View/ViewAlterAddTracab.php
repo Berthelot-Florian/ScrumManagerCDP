@@ -28,7 +28,8 @@
 	 		//Si on veut modifier un sprint
 	 		$projet = $_GET["projet"];
 	 		$res = getProjectById($projet);
-	 		$sprint = $_GET['sprint'];
+			if(isset($_GET["sprint"]))
+				$sprint = $_GET["sprint"];
 	 		$tracab = getTracab($projet);
 	 		$size   = mysqli_num_rows($tracab);
 	 		echo "<h2>Ajout/modification de la tracabilité : ".$res['title']."</h2>";
