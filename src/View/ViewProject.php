@@ -208,7 +208,7 @@
 								<a href="ViewTask.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i>Voir les tâches</a>
 								<a href="ViewMatTracabilite.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i> Voir la Matrice de Traçabilité</a>
 								<a href="ViewUS.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i> Voir toutes les UserStorys</a>
-					
+								<a href="ViewBurnDownChart.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i> Voir le BurnDownChart</a>
 								<a href="ViewAnnexe.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"><i class="fa fa-eye"></i> Voir les Annexes</a>
 							</div>
 						</div>

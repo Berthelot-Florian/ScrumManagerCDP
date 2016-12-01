@@ -125,6 +125,21 @@
 		return $result;
 	}
 	/**
+	 * [GetTaskByProjectAndSprint Permet de récupéré toute les taches d'un sprint]
+	 * @param [int] $idProject [id du projet]
+	 * @param [int] $idSprint  [id du sprint]
+	 */
+	function GetTaskByProjectAndSprint($idProject,$idSprint){
+		$result = GetUSByProjectSprint($idProject,$idSprint);
+		$data = $result->fetch_array(MYSQLI_NUM);
+		$allTask = getTaskByUs($data[0]);
+		while($data = $result->fetch_array(MYSQLI_NUM)){
+			$usTasks = getTaskByUs($data[0]);
+			mysqli_stmt_bind_result($allTask,$usTasks);
+		}
+		return $allTask;
+	}	
+	/**
 	 * [getUntakenTask Permet de récupérer les tâches non affectés àun utilisateur d'un sprint]
 	 * @param  [int] $idSprint [id du sprint]
 	 * @return [Mysqli_result]     [tâches non affectés du sprint]
@@ -192,22 +207,6 @@
 		$query="SELECT * FROM $TableTaskGlob WHERE state='3' AND userstory IN (SELECT id FROM $TableUSGlob WHERE sprint='$idSprint') AND id IN (SELECT task FROM $TableContribTaskGlob WHERE contributor='$idUser')";
 		$result = launchQuery($query);
 		return $result;
-	}
-	
-	/**
-	 * [GetTaskByProjectAndSprint Permet de récupéré toute les taches d'un sprint]
-	 * @param [int] $idProject [id du projet]
-	 * @param [int] $idSprint  [id du sprint]
-	 */
-	function GetTaskByProjectAndSprint($idProject,$idSprint){
-		$result = GetUSByProjectSprint($idProject,$idSprint);
-		$data = $result->fetch_array(MYSQLI_NUM);
-		$allTask = getTaskByUs($data[0]);
-		while($data = $result->fetch_array(MYSQLI_NUM)){
-			$usTasks = getTaskByUs($data[0]);
-			mysqli_stmt_bind_result($allTask,$usTasks);
-		}
-		return $allTask;
 	}
 	/**
 	 * [updateTask Permet de modifier l'état d'avancement d'un sprint]
