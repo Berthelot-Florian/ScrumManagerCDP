@@ -29,7 +29,7 @@
 	
 	<?php
 		if(isset($_GET["sprint"]))
-			$result = GetTaskByProjectAndSprint($currProject['id'],$_GET["sprint"]);
+			$result = getTasksOfSprint($_GET["sprint"]);
 		else 
 			$result = GetTaskByProject($currProject['id']);
 		//Testons si l'utilisateur a lancé un des formulaires (Modification US ou Modification de priorité)

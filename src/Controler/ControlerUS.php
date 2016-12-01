@@ -162,14 +162,85 @@
 	 */
 	function GetUSByProjectSprint($idProject,$sprint){
 		global $TableUSGlob;
-		$query = "SELECT * FROM $TableUSGlob WHERE project = '$idProject' AND sprint='$sprint'";
+		$query = "SELECT * FROM $TableUSGlob WHERE project = '$idProject' AND sprint='$sprint' ORDER BY sprint ASC";
 		$result = launchQuery($query);
 		return $result;
 	}
 	
+	/**
+	 * [GetTotalUSDifficultyInProject Permet de récupérer le difficulté totale des US d'un projet]
+	 * @param [int] $idProject [numéro du projet]
+	 */
+	function GetTotalUSDifficultyInProject($idProject){
+		global $TableUSGlob;
+		$totalDifficulty = 0;
+		
+		$query = "SELECT * FROM $TableUSGlob WHERE project = '$idProject' ";
+		$result = launchQuery($query);
+		
+		while($data = $result->fetch_array(MYSQLI_NUM)){
+			$totalDifficulty += $data[7];
+		}		
+		return $totalDifficulty;
+	}
 	
+	/**
+	 * [GetUSDifficultiesBySprints Permet de récupérer le difficulté totale des US d'un projet]
+	 * @param [int] $idProject [numéro du projet]
+	 */
+	function GetUSDifficultiesBySprints($idProject,$totalDifficulty){
+		global $TableUSGlob;
+		$difficultyBySprint = [];
+		$difficultyBySprint[0] = $totalDifficulty;
+		$indexSprint=1;
+		$result = getSprints($idProject);
+		while($data = $result->fetch_array(MYSQLI_NUM)){
+			$allUSBySprint = GetUSByProjectSprint($idProject,$data[1]);
+			$difficultyBySprint[$indexSprint] = $difficultyBySprint[$indexSprint-1];
+			while($us = $allUSBySprint->fetch_array(MYSQLI_NUM)){
+				$difficultyBySprint[$indexSprint]-=$us[7];
+			}
+			$indexSprint++;
+		}		
+		return $difficultyBySprint;
+	}
 	
+	/**
+	 * [GetEffectiveDifficultiesBySprints Permet de récupérer le difficulté totale des US d'un projet]
+	 * @param [int] $idProject [numéro du projet]
+	 */
+	function GetEffectiveDifficultiesBySprints($idProject,$totalDifficulty){
+		global $TableUSGlob;
+		$difficultyBySprint = [];
+		$difficultyBySprint[0] = $totalDifficulty;
+		$indexSprint=1;
+		$result = getSprints($idProject);
+		while($data = $result->fetch_array(MYSQLI_NUM)){
+			$allUSBySprint = GetUSByProjectSprint($idProject,$data[1]);
+			$difficultyBySprint[$indexSprint] = $difficultyBySprint[$indexSprint-1];
+			while($us = $allUSBySprint->fetch_array(MYSQLI_NUM)){
+				if(IsUsDone($us[0])){
+					$difficultyBySprint[$indexSprint]-=$us[7];
+				}
+			}
+			
+			$indexSprint++;
+		}		
+		return $difficultyBySprint;
+	}
 	
-	
-	
+	/**
+	 * [GetUSDifficultiesBySprints Permet de récupérer le difficulté totale des US d'un projet]
+	 * @param [int] $idProject [numéro du projet]
+	 */
+	function IsUsDone($idUS){
+		global $TableUSGlob;
+		$isDone=true;
+		$result = getTaskByUs($idUS);
+		while($data = $result->fetch_array(MYSQLI_NUM)){
+			if($data[5] != 3)
+				$isDone = false;
+		}		
+		return $isDone;
+	}
 	

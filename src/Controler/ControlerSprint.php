@@ -157,3 +157,18 @@
 		$query ="DELETE FROM $TableSprintglob WHERE `project`='$projet' AND `number`='$sprint' ";
 		return launchQuery($query);
 	}
+	
+	/**
+	 * [GetLabelAxial permet de construire un tableau contenant les labels pour l'axe sprint du burn down chart]
+	 * @param  [int] $nbSprints [nombre de sprints]
+	 * @return [String[]]    $labels     [La liste des labels]
+	 */
+	function GetLabelAxial($nbSprints){
+		$labels = [];
+		for($i = 0 ; $i<=$nbSprints; $i++)
+			$labels[$i] = "Sprint ".$i;
+		return $labels;
+	}
+	
+	
+	
