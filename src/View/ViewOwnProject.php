@@ -52,7 +52,7 @@
 							<div class="panel-heading">
 								<h3 class="panel-title"><strong><?php echo $data[1]; ?></strong></h3>
 								<div class="panel-body">
-									<strong>ScrumMaster : </strong><?php $row = getUserByID($data[3]); echo $row[3]; ?> <br/>
+									<strong>ScrumMaster : </strong><?php $row = getUserByID($data[2]); echo $row[3]; ?> <br/>
 									<strong>ProductOwner : </strong><?php $row = getUserByID($data[3]); echo $row[3]; ?> <br/>
 									<strong>Description : </strong><?php echo $data[4]; ?> <br/>
 								</div>
@@ -91,7 +91,7 @@
 							<div class="panel-heading">
 								<h3 class="panel-title"><strong><?php echo $data[1]; ?></strong></h3>
 								<div class="panel-body">
-									<strong>ScrumMaster : </strong><?php $row = getUserByID($data[3]); echo $row[3]; ?> <br/>
+									<strong>ScrumMaster : </strong><?php $row = getUserByID($data[2]); echo $row[3]; ?> <br/>
 									<strong>ProductOwner : </strong><?php $row = getUserByID($data[3]); echo $row[3]; ?> <br/>
 									<strong>Description : </strong><?php echo $data[4]; ?> <br/>
 								</div>

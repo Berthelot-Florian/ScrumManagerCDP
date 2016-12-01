@@ -121,7 +121,7 @@
 	 * @return [mysqli_result] [retourne tout les projets]
 	 */
 	function getAllProjectByContributorID($UserID){
-		global $TableProjetGlob;
+		global $TableContribGlob;
 		$query = "SELECT project FROM $TableContribGlob WHERE contributor = '$UserID' ";
 		$result = launchQuery($query);
 		return $result;
