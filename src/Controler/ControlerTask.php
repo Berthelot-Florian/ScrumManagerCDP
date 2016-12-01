@@ -87,3 +87,56 @@
 		$result = launchQuery($query);
 		return $result;
 	}
+
+	function getTasksOfSprint($idSprint){
+		global $TableTaskGlob;
+		global $TableUSGlob;
+		$query="SELECT * FROM $TableTaskGlob WHERE userstory IN (SELECT id FROM $TableUSGlob WHERE sprint='$idSprint')";
+		$result = launchQuery($query);
+		return $result;
+	}
+
+	function getUntakenTask($idSprint){
+		global $TableTaskGlob;
+		global $TableUSGlob;
+		global $TableContribTaskGlob;
+		$query="SELECT * FROM $TableTaskGlob WHERE userstory IN (SELECT id FROM $TableUSGlob WHERE sprint='$idSprint') AND id NOT IN (SELECT task FROM $TableContribTaskGlob)";
+		$result = launchQuery($query);
+		return $result;	
+	}
+
+	function getToDoTask($idSprint, $idUser){
+		global $TableTaskGlob;
+		global $TableUSGlob;
+		global $TableContribTaskGlob;
+		$query="SELECT * FROM $TableTaskGlob WHERE state='0' AND userstory IN (SELECT id FROM $TableUSGlob WHERE sprint='$idSprint') AND id IN (SELECT task FROM $TableContribTaskGlob WHERE contributor='$idUser')";
+		$result = launchQuery($query);
+		return $result;
+	}
+
+	function getOnGoingTask($idSprint, $idUser){
+		global $TableTaskGlob;
+		global $TableUSGlob;
+		global $TableContribTaskGlob;
+		$query="SELECT * FROM $TableTaskGlob WHERE state='1' AND userstory IN (SELECT id FROM $TableUSGlob WHERE sprint='$idSprint') AND id IN (SELECT task FROM $TableContribTaskGlob WHERE contributor='$idUser')";
+		$result = launchQuery($query);
+		return $result;
+	}
+
+	function getOnTestTask($idSprint, $idUser){
+		global $TableTaskGlob;
+		global $TableUSGlob;
+		global $TableContribTaskGlob;
+		$query="SELECT * FROM $TableTaskGlob WHERE state='2' AND userstory IN (SELECT id FROM $TableUSGlob WHERE sprint='$idSprint') AND id IN (SELECT task FROM $TableContribTaskGlob WHERE contributor='$idUser')";
+		$result = launchQuery($query);
+		return $result;
+	}
+
+	function getDoneTask($idSprint, $idUser){
+		global $TableTaskGlob;
+		global $TableUSGlob;
+		global $TableContribTaskGlob;
+		$query="SELECT * FROM $TableTaskGlob WHERE state='3' AND userstory IN (SELECT id FROM $TableUSGlob WHERE sprint='$idSprint') AND id IN (SELECT task FROM $TableContribTaskGlob WHERE contributor='$idUser')";
+		$result = launchQuery($query);
+		return $result;
+	}
