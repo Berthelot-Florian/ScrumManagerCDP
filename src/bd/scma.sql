@@ -218,7 +218,24 @@ LOCK TABLES `UserStory` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `Users`
+-- Tabke structure for table `tracabilite`
+--
+
+DROP TABLE IF EXISTS `tracabilite`
+
+CREATE TABLE `tracabilite` (
+  `projet` smallint(6) NOT NULL,
+  `sprint` smallint(6) NOT NULL,
+  `commit` varchar(64) NOT NULL,
+  `link`   varchar(64) NOT NULL,
+  PRIMARY KEY (`projet`,`sprint`),
+  CONSTRAINT `tracab_ibfk_1` FOREIGN KEY (`project`) REFERENCES `Project` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `tracab_ibfk_2` FOREIGN KEY (`sprint`) REFERENCES `Sprint` (`id`) ON DELETE CASCADE
+  )ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table 
 --
 
 DROP TABLE IF EXISTS `Users`;

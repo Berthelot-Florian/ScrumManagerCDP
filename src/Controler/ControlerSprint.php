@@ -129,6 +129,12 @@
 		return ($aaaa."-".$mm."-".$jj);
 	}
 
+	/**
+	 * [checkNumSprint Permet de vérifier le numéro d'un sprint]
+	 * @param  [int] $idProjet [id du projet]
+	 * @param  [int] $num      [numéro à tester]
+	 * @return [boolean]           [Vrai si numéro bon, faux sinon ]
+	 */
 	function checkNumSprint($idProjet,$num){
 		global $TableSprintglob;
 		$query = " SELECT * FROM $TableSprintglob WHERE `project`='$idProjet' AND `number`='$num' ";
@@ -140,6 +146,12 @@
 		}
 	}
 
+	/**
+	 * [removeSprint permet de supprimer un sprint]
+	 * @param  [int] $projet [id projet]
+	 * @param  [int] $sprint [numéro du sprint]
+	 * @return [boolean]         [Vrai si réussi, faux sinon]
+	 */
 	function removeSprint($projet,$sprint){
 		global $TableSprintglob;
 		$query ="DELETE FROM $TableSprintglob WHERE `project`='$projet' AND `number`='$sprint' ";

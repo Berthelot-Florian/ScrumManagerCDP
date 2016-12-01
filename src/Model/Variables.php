@@ -14,3 +14,4 @@
 	$TableSprintglob = "Sprint";
 	$TableTaskGlob = "Task";
 	$TableContribTaskGlob = "ContributorTask";
+	$TableTracabGlob = "tracabilite";

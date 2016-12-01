@@ -1,22 +1,21 @@
 <?php
 	include '../Controler/ControlerInclude.php';
 	cleanInclude();
-	require '../Controler/ControlerProject.php';
 	require '../Controler/ControlerUser.php';
+	require '../Controler/ControlerTracab.php';
 	require '../Controler/ControlerAuth.php';
 	
 	$projet = $_GET['projet'];
-	$contribToDel = $_GET['contrib'];
+	$sprint = $_GET['sprint'];
 	
-	//Vérification qu'il a bien les droits
-	if(isConnected() && isContributor($projet)){
-		removeContrib($contribToDel,$projet);
+	if(isContributor($projet)){
+		removeTracab($projet,$sprint);
 	}
 	
-	//redirection
+	//Redirection
 	$host  = $_SERVER['HTTP_HOST'];
 	$uri   = rtrim(dirname(dirname($_SERVER['PHP_SELF'])), '/\\');
-	$extra = '/View/ViewProject.php';
+	$extra = '/View/ViewMatTracabilite.php';
 	$projet = '?projet='.$_GET['projet'];
 	header("Location: http://$host$uri$extra$projet",true);
 	exit;
