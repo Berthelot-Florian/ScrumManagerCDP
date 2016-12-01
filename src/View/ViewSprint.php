@@ -37,7 +37,7 @@
   		echo "<a class=\"btn btn-default\" href=\"ViewProject.php?projet=$projet\">" . "Retour à la page du projet"."</a>";
   		if(isset($_POST['description']) && isset($_POST['effort']) && isset($_POST['US']) && isset($_POST['state']) && isset($_POST['task']) ) {
 	 			UpdateTask($_POST['description'],$_POST['effort'],$_POST['US'],$_POST['state'],$_POST['task']);
-				header("location: {$_SERVER['PHP_SELF']}?projet=".$currProject['id']);
+				header("location: {$_SERVER['PHP_SELF']}?projet=".$projet."&sprint=".$sprint);
 	 		}
   		?>
   		<center>
@@ -87,12 +87,9 @@
   		<table class="sprintTable">
   			<thead class="sprintThead">
   				<tr>
-  					<td colspan="5"> <a href="ViewTask.php?projet=<?php echo "$projet"."&sprint=".$sprint ?>" class="btn btn-default"><i class="fa fa-eye"></i> Page des tâche</a>
+  					<td colspan="5"> <a href="ViewTask.php?projet=<?php echo "$projet"."&sprint=".$sprint ?>" class="btn btn-default"><i class="fa fa-eye"></i> Page des tâches du Sprint</a>
   					<a href="ViewKanban.php?projet=<?php echo "$projet"."&sprint=".$sprint ?>" class="btn btn-default"><i class="fa fa-eye"></i> Kanban</a>
-  					<?php if(isContributor($projet)) { ?>
-  					<a href="ViewAddTask.php?projet=<?php echo "$projet"."&sprint=".$sprint ?>" class="btn btn-default"><i class="fa fa-plus"></i> Ajouter une tâche</a>
   					 </td>
-  					 <?php } ?>
   				</tr>
   				<tr>
   					<td> Description </td>
@@ -108,8 +105,7 @@
   				 A REVOIR ---------
   				 */
   				//Récupération des us du sprint
-  				$listUS = GetUSByProjectSprint($projet,$infosprint['id']);
-  				//$listUS = GetUSByProjectSprint($projet,0);
+  				$listUS = GetUSByProjectSprint($projet,$sprint);
   				while($us = mysqli_fetch_array($listUS,MYSQLI_ASSOC)){
   					//Récupération des infos de la tâche
   					$listTask = getTaskByUs($us['id']);
@@ -194,10 +190,7 @@
 	  					echo "</tr>";
   					}
 
-  					$task = getTask($row['task']);
-  					$task = mysqli_fetch_array($task,MYSQLI_ASSOC);  	
-  					//Mise de la couleur sur la ligne			
-  					  					
+  					
   					
 
 

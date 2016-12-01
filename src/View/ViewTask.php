@@ -28,7 +28,10 @@
 
 	
 	<?php
-		$result = GetTaskByProject($currProject['id']);
+		if(isset($_GET["sprint"]))
+			$result = GetTaskByProjectAndSprint($currProject['id'],$_GET["sprint"]);
+		else 
+			$result = GetTaskByProject($currProject['id']);
 		//Testons si l'utilisateur a lancé un des formulaires (Modification US ou Modification de priorité)
 			// Ici c'est la gestion du formulaire de priorité
 	 		if(isset($_POST['prio'])) {
@@ -57,7 +60,7 @@
 		}
 	else{
 		?>
-		<center><h2>Tâches du Projet <?php echo $currProject['title'];?> </h2></center>
+	<center><h2>Tâches du Projet <?php echo $currProject['title']; if(isset($_GET["sprint"])) echo " présentes dans le sprint ".$_GET["sprint"];?>  </h2></center>
 		<table class="table">
 			<thead>
 			  <tr>

@@ -2,6 +2,9 @@
 
 	$_SESSION['ControlerInclude'] = '1';
 
+	/**
+	 * [cleanInclude Permet de cleaner l'ensemble des includes afin de ne pas pouvoir importer deux fois le même fichier]
+	 */
 	function cleanInclude(){
 		session_start();
 		//détruit toute les variable relative aux includes qui évitent d'include 2 fois le même fichier
@@ -37,6 +40,9 @@
 		}
 		if(isset($_SESSION['ControlerTask'])){
 			unset($_SESSION['ControlerTask']);
+		}
+		if(isset($_SESSION['ControlerTracab'])){
+			unset($_SESSION['ControlerTracab']);
 		}
 		
 	}

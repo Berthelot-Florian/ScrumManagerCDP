@@ -7,7 +7,7 @@
 	
 
 	/**
-	 * [getAllUsers Fonction pour récupéré tout les utilisateurs]
+	 * @param [name] [<description>][getAllUsers Fonction pour récupéré tout les utilisateurs]
 	 * @return [mysqli_result] [toute les informations de l'utilisateur]
 	 */
 	function getAllUsers(){
@@ -25,7 +25,6 @@
  *
  * @return La ligne d'information de l'utilisateur ou FALSE si il n'est pas trouvé
  **/
-
 	function getUserByID($id){
 		
 		global $TableUserGlob;

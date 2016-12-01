@@ -5,6 +5,7 @@
 	include '../Controler/ControlerProject.php';
 	include '../Controler/ControlerUS.php';
 	include '../Controler/ControlerTask.php';
+	include '../Controler/ControlerSprint.php';
 	$currProject = getProjectById($_GET["projet"]);
 ?>
 <html>
@@ -48,6 +49,7 @@
 				if(strlen($_POST['goals'])>1) 
 					AlterGoalUS($_POST['goals'],$idUS);
 				AlterDifficultyUS($_POST['diff'],$idUS);
+				AlterSprintUS($_POST['sprint'],$idUS);
 				header("location: {$_SERVER['PHP_SELF']}?projet=".$currProject['id']);
 	 		}
 			if(isset($_POST['description']) && isset($_POST['effort']) && isset($_POST['US'])) {
@@ -55,7 +57,6 @@
 	 			//Testons si tout les champs sont correctement remplis
 				if(NotExistTask($idUS,$_POST['description']))
 					AddTask($currProject['id'],$_POST['description'],$_POST['effort'],$idUS);
-				//header("location: {$_SERVER['PHP_SELF']}?projet=".$currProject['id']);
 	 		}
 
 		
@@ -138,6 +139,16 @@
 														<textarea type="text" name="action" rows="2" cols="30"><?php echo $data[4]?></textarea>
 														<label for="goals" class="ui-hidden-accessible">Dans le but de : </label>
 														<textarea type="text" name="goals" rows="2" cols="30"><?php echo $data[5] ?></textarea>
+														<label for="sprint" class="ui-hidden-accessible">Sprint </label>
+														<select name="sprint" class="objForm">
+															<?php
+																$sprints = getSprints($currProject['id']);
+																echo "<option value=".$data[2]." selected=\"selected\">".$data[2]."</option>";
+																while($sprint = mysqli_fetch_array($sprints,MYSQLI_ASSOC)){
+																	echo "<option value=".$sprint['number'].">".$sprint['number']."</option>";
+																}	
+															?>
+														</select>
 														<label for="diff" class="ui-hidden-accessible">Difficulté </label>
 															<select name="diff" class="objForm">
 																<?php 
@@ -191,13 +202,14 @@
 			}
 		?>
 			</tbody>
-		</table>
+		</table> 
+		<?php
+	}
+	if(isContributor($currProject['id'])){ ?> 
 		<center>
 			<a href="ViewAjoutUS.php?projet=<?php echo $currProject['id']; ?>" class="btn btn-default"> Ajouter une UserStory</a>
 		</center>
-		<?php
-	}
-?>
+	<?php } ?>	
 		<center>
 			<a class="btn btn-default" href="ViewProject.php?projet=<?php echo $currProject['id']; ?>">Retour à la page du projet</a>
 		</center> 

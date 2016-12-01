@@ -15,7 +15,7 @@
 	 */
 	function AddUs($idProject,$sprint,$rank,$action,$goal,$difficulty){
 		global $TableUSGlob;
-		$query = "INSERT INTO $TableUSGlob (`id`, `project`,`sprint`, `rank`, `action`, `goal`, `difficulty`) VALUES (NULL,'$idProject',$sprint,'$rank','$action','$goal','$difficulty') ";
+		$query = "INSERT INTO $TableUSGlob (`project`,`sprint`, `rank`, `action`, `goal`, `difficulty`) VALUES ('$idProject',$sprint,'$rank','$action','$goal','$difficulty') ";
 		return launchQuery($query);
 	}
 
@@ -110,6 +110,19 @@
 	function AlterDifficultyUS($diffUS,$idUS){
 		global $TableUSGlob;
 		$query = "UPDATE $TableUSGlob SET difficulty = '$diffUS' WHERE id = '$idUS'";
+		$result = launchQuery($query);
+	}
+	
+	/**
+	 * [AlterSprintUS Permet de modifier le Sprint d'une US]
+	 * @param [int] $idUS
+	 * @param [int] $sprintUS
+	 * @return Void
+	 */
+
+	function AlterSprintUS($sprintUS,$idUS){
+		global $TableUSGlob;
+		$query = "UPDATE $TableUSGlob SET sprint = '$sprintUS' WHERE id = '$idUS'";
 		$result = launchQuery($query);
 	}
 	

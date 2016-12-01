@@ -38,6 +38,10 @@ CREATE_USERSTORY_TABLE="CREATE TABLE UserStory (id SMALLINT NOT NULL AUTO_INCREM
 						FOREIGN KEY (project)
 							REFERENCES Project(id)
 							ON DELETE CASCADE,	
+						sprint SMALLINT NOT NULL,
+						FOREIGN KEY (sprint)
+							REFERENCES Sprint(id)
+							ON DELETE CASCADE,	
 						rank VARCHAR(32) NOT NULL,
 						action VARCHAR(32) NOT NULL,
 						goal VARCHAR(32) NOT NULL,
@@ -85,6 +89,19 @@ CREATE_ANNEX_TABLE="CREATE TABLE Annexe (id SMALLINT NOT NULL AUTO_INCREMENT PRI
 						name VARCHAR(32) NOT NULL,
 						type VARCHAR(32) NOT NULL);"
 
+CREATE_TRAC_TABLE="CREATE TABLE tracabilite (
+						  projet SMALLINT NOT NULL,
+						  sprint SMALLINT NOT NULL,
+						  commit VARCHAR(64) NOT NULL,
+						  link   VARCHAR(64) NOT NULL,
+						  FOREIGN KEY (projet)
+							REFERENCES projet(id)
+							ON DELETE CASCADE,
+						  FOREIGN KEY (sprint)
+							REFERENCES Sprint(id)
+							ON DELETE CASCADE,
+						  PRIMARY KEY(projet, sprint));"
+						
 echo $CREATE_DATABASE > tmp.sql
 echo "USE scma;" >> tmp.sql
 echo $CREATE_USER_TABLE >> tmp.sql
@@ -95,6 +112,7 @@ echo $CREATE_TASK_TABLE >> tmp.sql
 echo $CREATE_CONTRIBUTORPROJECT_TABLE >> tmp.sql
 echo $CREATE_CONTRIBUTORTASK_TABLE >> tmp.sql
 echo $CREATE_ANNEX_TABLE >> tmp.sql
+echo $CREATE_TRAC_TABLE >> tmp.sql
 
 mysql -u$db_user -p -h$db_host < tmp.sql
 
