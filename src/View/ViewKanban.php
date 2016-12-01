@@ -30,6 +30,9 @@
 				$tasks = getUntakenTask($currSprint['id']);
 				while($row = mysqli_fetch_array($tasks,MYSQLI_ASSOC)){
 					echo $row['description'];
+					if(isContributor($_GET["projet"])){
+						echo "<a href=\"../Handler/takeTask.php?task=".$row["id"]."&projet=".$_GET["projet"]."&sprint=".$_GET["sprint"]."\" class=\"btn btn-outline-primary btn-sm\">S'approprier la tâche</a>";
+					}
 				};
 			?>
 		</ul>

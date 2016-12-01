@@ -209,7 +209,7 @@
 		return $result;
 	}
 	/**
-	 * [updateTask Permet de modifier l'état d'avancement d'un sprint]
+	 * [updateTask Permet de modifier l'état d'avancement d'une tâche]
 	 * @param [int] $newState [valeur de l'état]
 	 * @param [int] $idTask  [id de la tâche]
 	 */
@@ -218,4 +218,15 @@
 		$query = "UPDATE $TableTaskGlob SET state = '$newState' WHERE id = '$idTask'";
 		echo $query;
 		$result = launchQuery($query);
+	}
+
+	/**
+	 * [takeTask Permet de s'approprier une tâche]
+	 * @param [int] $task [id de la tâche]
+	 */
+	function takeTask($task){
+		global $TableContribTaskGlob;
+		$idContributor = $_SESSION['id'];
+		$query = "INSERT INTO $TableContribTaskGlob VALUES ('$idContributor','$task')";
+		launchQuery($query);
 	}
