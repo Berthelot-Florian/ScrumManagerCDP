@@ -221,7 +221,7 @@ UNLOCK TABLES;
 -- Tabke structure for table `tracabilite`
 --
 
-DROP TABLE IF EXISTS `tracabilite`
+DROP TABLE IF EXISTS `tracabilite`;
 
 CREATE TABLE `tracabilite` (
   `projet` smallint(6) NOT NULL,
@@ -229,7 +229,7 @@ CREATE TABLE `tracabilite` (
   `commit` varchar(64) NOT NULL,
   `link`   varchar(64) NOT NULL,
   PRIMARY KEY (`projet`,`sprint`),
-  CONSTRAINT `tracab_ibfk_1` FOREIGN KEY (`project`) REFERENCES `Project` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `tracab_ibfk_1` FOREIGN KEY (`projet`) REFERENCES `Project` (`id`) ON DELETE CASCADE,
   CONSTRAINT `tracab_ibfk_2` FOREIGN KEY (`sprint`) REFERENCES `Sprint` (`id`) ON DELETE CASCADE
   )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
