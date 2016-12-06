@@ -5,6 +5,17 @@
 	if(!isset($_SESSION['Variables']))
 		require '../Model/Variables.php';
 
+	function alterProject($id,$title,$po,$sm,$description){
+		global $TableProjetGlob;
+		$query = "UPDATE $TableProjetGlob SET 
+		title='$title',
+		productowner='$po',
+		scrummaster='$sm',
+		description='$description'
+		WHERE id='$id'";
+		return launchQuery($query);
+	}
+
 	/**
 	 * [AddProject Fonction pour ajouter un projet]
 	 * @param [String] $title        		[Titre du projet]
