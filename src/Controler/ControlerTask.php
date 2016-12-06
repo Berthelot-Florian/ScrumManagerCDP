@@ -15,10 +15,6 @@
 	 */
 	function AddTask($idProject,$description,$effort,$idUS){
 		global $TableTaskGlob;
-		printf("id project ".$idProject."\n");
-		printf("description ".$description."\n");
-		printf("effort ".$effort."\n");
-		printf("idUS ".$idUS."\n");
 		$query = "INSERT INTO $TableTaskGlob (`project`, `description`, `effort`, `userstory`,`state` ) VALUES ('$idProject','$description','$effort','$idUS',0) ";
 		return launchQuery($query);
 	}
@@ -216,7 +212,6 @@
 	function updateState($newState,$idTask){
 		global $TableTaskGlob;
 		$query = "UPDATE $TableTaskGlob SET state = '$newState' WHERE id = '$idTask'";
-		echo $query;
 		$result = launchQuery($query);
 	}
 

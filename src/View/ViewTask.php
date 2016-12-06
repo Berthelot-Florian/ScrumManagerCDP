@@ -5,7 +5,9 @@
 	include '../Controler/ControlerProject.php';
 	include '../Controler/ControlerTask.php';
 	include '../Controler/ControlerUS.php';
+	include '../Controler/ControlerSprint.php';
 	$currProject = getProjectById($_GET["projet"]);
+	$currSprint = getSprint($_GET["projet"],$_GET["sprint"]);
 ?>
 <html>
 <head>
@@ -28,8 +30,8 @@
 
 	
 	<?php
-		if(isset($_GET["sprint"]))
-			$result = getTasksOfSprint($_GET["sprint"]);
+		if(isset($currSprint["id"]))
+			$result = getTasksOfSprint($currSprint["id"]);
 		else 
 			$result = GetTaskByProject($currProject['id']);
 		//Testons si l'utilisateur a lancé un des formulaires (Modification US ou Modification de priorité)
