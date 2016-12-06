@@ -108,12 +108,12 @@
 
 		if ($aaaa <= $aaaa2){
 			if ($mm <= $mm2){
-				if ($jj >= $jj2){
-					return false;
+				if ($jj <= $jj2){
+					return true;
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 
 	/**

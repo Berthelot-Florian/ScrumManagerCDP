@@ -84,8 +84,7 @@
 						<select name="sprint" class="objForm">
 							<?php
 								$sprints = getSprints($projet);
-								print_r($sprints);
-								echo "<option value=\"0\">0</option>";
+								
 								while($sprint = mysqli_fetch_array($sprints,MYSQLI_ASSOC)){
 									echo "<option value=".$sprint['number'].">".$sprint['number']."</option>";
 								}	
